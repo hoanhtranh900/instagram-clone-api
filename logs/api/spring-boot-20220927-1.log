@@ -1,14 +1,14 @@
-2022-09-27 15:19:17,744 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-09-27 15:19:17,767 INFO o.s.b.StartupInfoLogger [main] Starting IgCloneApplication using Java 1.8.0_202 on DESKTOP-FSGNT1P with PID 7984 (D:\instagram-backend\api\app-base\target\classes started by za in D:\instagram-backend\api)
-2022-09-27 15:19:17,769 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2022-09-27 15:19:18,307 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-09-27 15:19:18,340 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 5 JPA repository interfaces.
-2022-09-27 15:19:18,771 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityConfig' of type [com.sangnk.core.security.MethodSecurityConfig$$EnhancerBySpringCGLIB$$3e46e4c8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-09-27 15:19:18,925 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8023 (http)
-2022-09-27 15:19:18,929 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8023"]
-2022-09-27 15:19:18,929 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2022-09-27 15:19:18,929 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.60]
-2022-09-27 15:19:19,170 WARN o.a.j.l.DirectJDKLog [main] Failed to scan [file:/C:/Users/za/.m2/repository/xalan/xalan/2.7.2/serializer.jar] from classloader hierarchy
+2022-09-27 15:30:56,264 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-09-27 15:30:56,317 INFO o.s.b.StartupInfoLogger [main] Starting IgCloneApplication using Java 1.8.0_202 on DESKTOP-FSGNT1P with PID 14380 (D:\instagram-backend\api\app-base\target\classes started by za in D:\instagram-backend\api)
+2022-09-27 15:30:56,321 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-09-27 15:30:57,389 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-27 15:30:57,505 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 104 ms. Found 5 JPA repository interfaces.
+2022-09-27 15:30:58,756 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityConfig' of type [com.sangnk.core.security.MethodSecurityConfig$$EnhancerBySpringCGLIB$$af6ad56f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-09-27 15:30:59,108 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8023 (http)
+2022-09-27 15:30:59,118 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8023"]
+2022-09-27 15:30:59,119 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2022-09-27 15:30:59,119 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-09-27 15:30:59,714 WARN o.a.j.l.DirectJDKLog [main] Failed to scan [file:/C:/Users/za/.m2/repository/xalan/xalan/2.7.2/serializer.jar] from classloader hierarchy
 java.io.FileNotFoundException: C:\Users\za\.m2\repository\xalan\xalan\2.7.2\serializer.jar (The system cannot find the file specified)
 	at java.util.zip.ZipFile.open(Native Method) ~[?:1.8.0_202]
 	at java.util.zip.ZipFile.<init>(ZipFile.java:225) ~[?:1.8.0_202]
@@ -29,7 +29,8 @@ java.io.FileNotFoundException: C:\Users\za\.m2\repository\xalan\xalan\2.7.2\seri
 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_202]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) ~[?:1.8.0_202]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) ~[?:1.8.0_202]
 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
 	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[?:1.8.0_202]
 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
@@ -37,7 +38,8 @@ java.io.FileNotFoundException: C:\Users\za\.m2\repository\xalan\xalan\2.7.2\seri
 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_202]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) ~[?:1.8.0_202]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) ~[?:1.8.0_202]
 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
 	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[?:1.8.0_202]
 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
@@ -62,27 +64,25 @@ java.io.FileNotFoundException: C:\Users\za\.m2\repository\xalan\xalan\2.7.2\seri
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312) ~[spring-boot-2.6.6.jar:2.6.6]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.6.jar:2.6.6]
 	at com.sangnk.IgCloneApplication.main(IgCloneApplication.java:23) ~[classes/:?]
-2022-09-27 15:19:19,174 INFO o.a.j.l.DirectJDKLog [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2022-09-27 15:19:19,178 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2022-09-27 15:19:19,178 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1364 ms
-2022-09-27 15:19:19,367 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: db.primary.datasource]
-2022-09-27 15:19:19,409 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.7.Final
-2022-09-27 15:19:19,544 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-09-27 15:19:19,658 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect
-2022-09-27 15:19:20,366 DEBUG o.h.e.j.s.SqlStatementLogger [main] alter table ADM_USERS drop index if exists USER_NAME
-2022-09-27 15:19:20,366 DEBUG o.h.e.j.s.SqlStatementLogger [main] alter table ADM_USERS add constraint USER_NAME unique (USER_NAME)
-2022-09-27 15:19:20,390 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-09-27 15:19:20,395 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
-2022-09-27 15:19:20,854 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect$$EnhancerBySpringCGLIB$$efd9d6cc
-2022-09-27 15:19:20,865 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MySQLUnicodeDialect$$EnhancerBySpringCGLIB$$6275da5a
-2022-09-27 15:19:20,871 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.Oracle10gUnicodeDialect$$EnhancerBySpringCGLIB$$e72f9c2
-2022-09-27 15:19:20,879 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.PostgreSQLUnicodeDialect$$EnhancerBySpringCGLIB$$8b9a5600
-2022-09-27 15:19:20,886 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.SQLServerUnicodeDialect$$EnhancerBySpringCGLIB$$19b43229
-2022-09-27 15:19:21,121 INFO o.q.i.StdSchedulerFactory [main] Using default implementation for ThreadExecutor
-2022-09-27 15:19:21,127 INFO o.q.c.SchedulerSignalerImpl [main] Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2022-09-27 15:19:21,127 INFO o.q.c.QuartzScheduler [main] Quartz Scheduler v.2.3.2 created.
-2022-09-27 15:19:21,128 INFO o.q.s.RAMJobStore [main] RAMJobStore initialized.
-2022-09-27 15:19:21,128 INFO o.q.c.QuartzScheduler [main] Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+2022-09-27 15:30:59,768 INFO o.a.j.l.DirectJDKLog [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-09-27 15:30:59,786 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-09-27 15:30:59,787 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3370 ms
+2022-09-27 15:31:00,587 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: db.primary.datasource]
+2022-09-27 15:31:00,622 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.7.Final
+2022-09-27 15:31:00,778 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-27 15:31:00,943 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect
+2022-09-27 15:31:02,312 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-27 15:31:02,330 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
+2022-09-27 15:31:03,617 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect$$EnhancerBySpringCGLIB$$60fdc773
+2022-09-27 15:31:03,639 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MySQLUnicodeDialect$$EnhancerBySpringCGLIB$$d399cb01
+2022-09-27 15:31:03,652 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.Oracle10gUnicodeDialect$$EnhancerBySpringCGLIB$$7f96ea69
+2022-09-27 15:31:03,680 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.PostgreSQLUnicodeDialect$$EnhancerBySpringCGLIB$$fcbe46a7
+2022-09-27 15:31:03,700 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.SQLServerUnicodeDialect$$EnhancerBySpringCGLIB$$8ad822d0
+2022-09-27 15:31:04,586 INFO o.q.i.StdSchedulerFactory [main] Using default implementation for ThreadExecutor
+2022-09-27 15:31:04,607 INFO o.q.c.SchedulerSignalerImpl [main] Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-09-27 15:31:04,608 INFO o.q.c.QuartzScheduler [main] Quartz Scheduler v.2.3.2 created.
+2022-09-27 15:31:04,610 INFO o.q.s.RAMJobStore [main] RAMJobStore initialized.
+2022-09-27 15:31:04,612 INFO o.q.c.QuartzScheduler [main] Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -90,103 +90,36 @@ java.io.FileNotFoundException: C:\Users\za\.m2\repository\xalan\xalan\2.7.2\seri
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2022-09-27 15:19:21,128 INFO o.q.i.StdSchedulerFactory [main] Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2022-09-27 15:19:21,128 INFO o.q.i.StdSchedulerFactory [main] Quartz scheduler version: 2.3.2
-2022-09-27 15:19:21,128 INFO o.q.c.QuartzScheduler [main] JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@7ca7bddd
-2022-09-27 15:19:21,178 INFO o.s.b.a.e.w.EndpointLinksResolver [main] Exposing 15 endpoint(s) beneath base path '/actuator'
-2022-09-27 15:19:21,382 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2022-09-27 15:19:21,382 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/**', OPTIONS] with []
-2022-09-27 15:19:21,382 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-resources/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2022-09-27 15:19:21,382 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-resources/**'] with []
-2022-09-27 15:19:21,383 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui.html**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2022-09-27 15:19:21,383 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui.html**'] with []
-2022-09-27 15:19:21,383 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2022-09-27 15:19:21,383 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui/**'] with []
-2022-09-27 15:19:21,383 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v2/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2022-09-27 15:19:21,383 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/v2/api-docs/**'] with []
-2022-09-27 15:19:21,383 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/webjars/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2022-09-27 15:19:21,383 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/webjars/**'] with []
-2022-09-27 15:19:21,383 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/public/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2022-09-27 15:19:21,383 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/public/**'] with []
-2022-09-27 15:19:21,405 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will not secure Or [Ant [pattern='/**']]
-2022-09-27 15:19:21,466 DEBUG o.h.e.j.s.SqlStatementLogger [main] select admuser0_.ID as id1_0_, admuser0_.CREATE_BY as create_b2_0_, admuser0_.CREATED_DATE as created_3_0_, admuser0_.MODIFIED_BY as modified4_0_, admuser0_.MODIFIED_DATE as modified5_0_, admuser0_.ADDRESS as address6_0_, admuser0_.BIRTHDAY as birthday7_0_, admuser0_.EMAIL as email8_0_, admuser0_.FULL_NAME as full_nam9_0_, admuser0_.GENDER as gender10_0_, admuser0_.GIVEN_NAME as given_n11_0_, admuser0_.IS_DELETE as is_dele12_0_, admuser0_.PASSWORD as passwor13_0_, admuser0_.PHONE_NUMBER as phone_n14_0_, admuser0_.POSITION as positio15_0_, admuser0_.STATUS as status16_0_, admuser0_.SURNAME as surname17_0_, admuser0_.USER_NAME as user_na18_0_ from ADM_USERS admuser0_ where admuser0_.USER_NAME=?
-2022-09-27 15:19:21,470 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [1] as [VARCHAR] - [admin]
-2022-09-27 15:19:21,595 DEBUG o.h.e.j.s.SqlStatementLogger [main] insert into ADM_USERS (CREATE_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE, ADDRESS, BIRTHDAY, EMAIL, FULL_NAME, GENDER, GIVEN_NAME, IS_DELETE, PASSWORD, PHONE_NUMBER, POSITION, STATUS, SURNAME, USER_NAME) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-09-27 15:19:21,595 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [1] as [VARCHAR] - [null]
-2022-09-27 15:19:21,596 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [2] as [TIMESTAMP] - [Tue Sep 27 15:19:21 ICT 2022]
-2022-09-27 15:19:21,596 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [3] as [VARCHAR] - [null]
-2022-09-27 15:19:21,596 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [4] as [TIMESTAMP] - [Tue Sep 27 15:19:21 ICT 2022]
-2022-09-27 15:19:21,596 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [5] as [VARCHAR] - [null]
-2022-09-27 15:19:21,597 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [6] as [TIMESTAMP] - [null]
-2022-09-27 15:19:21,597 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [7] as [VARCHAR] - [null]
-2022-09-27 15:19:21,597 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [8] as [VARCHAR] - [null]
-2022-09-27 15:19:21,597 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [9] as [BIGINT] - [null]
-2022-09-27 15:19:21,597 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [10] as [VARCHAR] - [null]
-2022-09-27 15:19:21,597 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [11] as [BIGINT] - [0]
-2022-09-27 15:19:21,598 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [12] as [VARCHAR] - [$2a$10$o9OPYMh3W6HkPMEPFcQPXe4Dl9wI9kbM1oF8/AVyqdRcsUVxJCCRK]
-2022-09-27 15:19:21,598 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [13] as [VARCHAR] - [null]
-2022-09-27 15:19:21,598 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [14] as [VARCHAR] - [null]
-2022-09-27 15:19:21,598 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [15] as [BIGINT] - [0]
-2022-09-27 15:19:21,598 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [16] as [VARCHAR] - [null]
-2022-09-27 15:19:21,598 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [17] as [VARCHAR] - [admin]
-2022-09-27 15:19:21,807 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8023"]
-2022-09-27 15:19:21,823 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8023 (http) with context path '/ig-clone'
-2022-09-27 15:19:21,846 INFO o.s.s.q.SchedulerFactoryBean [main] Starting Quartz Scheduler now
-2022-09-27 15:19:21,846 INFO o.q.c.QuartzScheduler [main] Scheduler quartzScheduler_$_NON_CLUSTERED started.
-2022-09-27 15:19:21,854 INFO o.s.b.StartupInfoLogger [main] Started IgCloneApplication in 4.276 seconds (JVM running for 5.009)
-2022-09-27 15:19:22,291 INFO o.a.j.l.DirectJDKLog [RMI TCP Connection(5)-192.168.0.104] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-09-27 15:20:13,781 ERROR o.a.j.l.DirectJDKLog [http-nio-8023-exec-3] Servlet.service() for servlet [dispatcherServlet] in context with path [/ig-clone] threw exception [Could not resolve view with name 'forward:/swagger-ui/index.html' in servlet with name 'dispatcherServlet'] with root cause
-javax.servlet.ServletException: Could not resolve view with name 'forward:/swagger-ui/index.html' in servlet with name 'dispatcherServlet'
-	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1380) ~[spring-webmvc-5.3.18.jar:5.3.18]
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1145) ~[spring-webmvc-5.3.18.jar:5.3.18]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084) ~[spring-webmvc-5.3.18.jar:5.3.18]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.18.jar:5.3.18]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.18.jar:5.3.18]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.18.jar:5.3.18]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.60.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.18.jar:5.3.18]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.60.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:102) ~[spring-web-5.3.18.jar:5.3.18]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:204) ~[spring-security-web-5.6.2.jar:5.6.2]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.2.jar:5.6.2]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.18.jar:5.3.18]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.18.jar:5.3.18]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96) ~[spring-boot-actuator-2.6.6.jar:2.6.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.18.jar:5.3.18]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.18.jar:5.3.18]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.18.jar:5.3.18]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.60.jar:9.0.60]
-	at java.lang.Thread.run(Thread.java:748) ~[?:1.8.0_202]
-2022-09-27 15:21:49,181 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2022-09-27 15:21:49,259 INFO o.s.s.q.SchedulerFactoryBean [SpringApplicationShutdownHook] Shutting down Quartz Scheduler
-2022-09-27 15:21:49,259 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-2022-09-27 15:21:49,259 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2022-09-27 15:21:49,259 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-2022-09-27 15:21:49,262 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
+2022-09-27 15:31:04,612 INFO o.q.i.StdSchedulerFactory [main] Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-09-27 15:31:04,612 INFO o.q.i.StdSchedulerFactory [main] Quartz scheduler version: 2.3.2
+2022-09-27 15:31:04,613 INFO o.q.c.QuartzScheduler [main] JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@16a83016
+2022-09-27 15:31:04,761 INFO o.s.b.a.e.w.EndpointLinksResolver [main] Exposing 15 endpoint(s) beneath base path '/actuator'
+2022-09-27 15:31:05,301 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-27 15:31:05,302 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/**', OPTIONS] with []
+2022-09-27 15:31:05,304 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-resources/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-27 15:31:05,304 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-resources/**'] with []
+2022-09-27 15:31:05,304 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui.html**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-27 15:31:05,305 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui.html**'] with []
+2022-09-27 15:31:05,305 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-27 15:31:05,305 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui/**'] with []
+2022-09-27 15:31:05,305 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v2/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-27 15:31:05,305 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/v2/api-docs/**'] with []
+2022-09-27 15:31:05,305 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/webjars/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-27 15:31:05,305 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/webjars/**'] with []
+2022-09-27 15:31:05,305 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/public/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-27 15:31:05,305 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/public/**'] with []
+2022-09-27 15:31:05,354 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will not secure Or [Ant [pattern='/**']]
+2022-09-27 15:31:05,478 DEBUG o.h.e.j.s.SqlStatementLogger [main] select admuser0_.ID as id1_0_, admuser0_.CREATE_BY as create_b2_0_, admuser0_.CREATED_DATE as created_3_0_, admuser0_.MODIFIED_BY as modified4_0_, admuser0_.MODIFIED_DATE as modified5_0_, admuser0_.ADDRESS as address6_0_, admuser0_.BIRTHDAY as birthday7_0_, admuser0_.EMAIL as email8_0_, admuser0_.FULL_NAME as full_nam9_0_, admuser0_.GENDER as gender10_0_, admuser0_.GIVEN_NAME as given_n11_0_, admuser0_.IS_DELETE as is_dele12_0_, admuser0_.PASSWORD as passwor13_0_, admuser0_.PHONE_NUMBER as phone_n14_0_, admuser0_.POSITION as positio15_0_, admuser0_.STATUS as status16_0_, admuser0_.SURNAME as surname17_0_, admuser0_.USER_NAME as user_na18_0_ from ADM_USERS admuser0_ where admuser0_.USER_NAME=?
+2022-09-27 15:31:05,496 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [1] as [VARCHAR] - [admin]
+2022-09-27 15:31:05,976 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8023"]
+2022-09-27 15:31:06,111 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8023 (http) with context path '/ig-clone'
+2022-09-27 15:31:06,418 INFO o.s.s.q.SchedulerFactoryBean [main] Starting Quartz Scheduler now
+2022-09-27 15:31:06,419 INFO o.q.c.QuartzScheduler [main] Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-09-27 15:31:06,427 INFO o.s.b.StartupInfoLogger [main] Started IgCloneApplication in 10.549 seconds (JVM running for 11.866)
+2022-09-27 15:31:06,642 INFO o.a.j.l.DirectJDKLog [RMI TCP Connection(11)-192.168.0.104] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 15:33:47,839 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-09-27 15:33:47,914 INFO o.s.s.q.SchedulerFactoryBean [SpringApplicationShutdownHook] Shutting down Quartz Scheduler
+2022-09-27 15:33:47,914 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-09-27 15:33:47,914 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-09-27 15:33:47,914 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-09-27 15:33:47,917 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'db.primary.datasource'

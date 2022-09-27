@@ -20,12 +20,14 @@ public class SearchForm {
     private String address;
     private String unitId;
     private String phone;
-    private String description;
     private String status;
     private String isDelete;
     private String username;
     private String phoneNumber;
     private String typeRegistration;
+
+    //POST
+    private String description;
 
 
 
