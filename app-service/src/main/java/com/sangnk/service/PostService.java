@@ -26,4 +26,8 @@ public interface PostService {
 
      public Post getPostById(Long postId);
 
+     public Post updatePost(Post post);
+
+     public Post deletePost(Post post);
+
 }

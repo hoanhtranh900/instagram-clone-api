@@ -1,30 +1,69 @@
 package com.sangnk.service.impl;
 
 
+import com.sangnk.core.contants.ConstantString;
+import com.sangnk.core.dto.request.SearchForm;
+import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.entity.Follow;
+import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.entity.view.ViewFollow;
+import com.sangnk.core.entity.view.ViewPost;
+import com.sangnk.core.exception.BaseException;
 import com.sangnk.core.repository.follow.FollowRepository;
 import com.sangnk.core.repository.follow.FollowRequestRepository;
+import com.sangnk.core.service.BaseService;
+import com.sangnk.core.service.BaseServiceImpl;
+import com.sangnk.core.utils.*;
+import com.sangnk.service.AdmUserService;
 import com.sangnk.service.FollowService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FollowServiceImpl implements FollowService {
+public class FollowServiceImpl extends BaseServiceImpl<Follow, FollowRepository> implements FollowService<Follow> {
     @Autowired
     private FollowRepository followRepository;
     @Autowired
     private FollowRequestRepository followRequestRepository;
+    @Autowired
+    private AdmUserService<AdmUser> admUserService;
+
+    @Autowired
+    private UtilsService utilsService;
+
+    @Autowired
+    private EntityManager entityManager;
+
+    public FollowServiceImpl(FollowRepository repository) {
+        super(repository);
+    }
 
     @Override
-    public Follow followUser(Long userIdAdmUser) {
-        return null;
+    public Follow followUser(Long userId) {
+        AdmUser cuUser = UtilsCommon.getUserLogin().get();
+        validateFollow(userId, cuUser);
+        Follow follow = new Follow();
+        follow.setFollower(cuUser);
+        AdmUser user = admUserService.get(userId).orElseThrow(() -> new BaseException("User not found"));
+        follow.setFollowing(user);
+        utilsService.save(followRepository, follow);
+        return follow;
+    }
+
+    private void validateFollow(Long following, AdmUser cuUser) {
+        if (cuUser.getId().equals(following)) {
+            throw new BaseException("You can not follow yourself");
+        }
     }
 
     @Override
@@ -33,8 +72,40 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public Page<ViewFollow> getUserFollowers(Long userId, Pageable pageable) {
-        return null;
+    public Page<ViewFollow> getUserFollowers(SearchForm searchForm, Pageable pageable) {
+        Page<ViewFollow> page = null;
+        try {
+            List<ViewFollow> list = new ArrayList<>();
+            String hql = " from ViewFollow u left join u.following fli where 1=1 ";
+            QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
+
+            builder.and(QueryUtils.EQ, "u.isDelete", ConstantString.IS_DELETE.active);
+            builder.and(QueryUtils.EQ, "fli.id", Long.parseLong(searchForm.getId()));
+
+
+            Query query = builder.initQuery(false);
+            int count = Integer.parseInt(query.getSingleResult().toString());
+
+            pageable.getSort().iterator().forEachRemaining(order -> {
+                builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
+            });
+            builder.addOrder("u.createTime", QueryUtils.DESC);
+
+            builder.setSubFix("select u");
+            query = builder.initQuery(ViewFollow.class);
+            if (pageable.getPageSize() > 0) {
+                query.setFirstResult(Integer.parseInt(String.valueOf(pageable.getOffset()))).setMaxResults(pageable.getPageSize());
+            }
+            list = query.getResultList();
+
+            if (list != null) {
+                page = new PageImpl<>(list, pageable, count);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return page;
     }
 
     @Override
@@ -43,8 +114,40 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public Page<ViewFollow> getUserFollowing(Long userId, Pageable pageable) {
-        return null;
+    public Page<ViewFollow> getUserFollowing(SearchForm searchForm, Pageable pageable) {
+        Page<ViewFollow> page = null;
+        try {
+            List<ViewFollow> list = new ArrayList<>();
+            String hql = " from ViewFollow u left join u.follower fle where 1=1 ";
+            QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
+
+            builder.and(QueryUtils.EQ, "u.isDelete", ConstantString.IS_DELETE.active);
+            builder.and(QueryUtils.EQ, "fle.id", Long.parseLong(searchForm.getId()));
+
+
+            Query query = builder.initQuery(false);
+            int count = Integer.parseInt(query.getSingleResult().toString());
+
+            pageable.getSort().iterator().forEachRemaining(order -> {
+                builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
+            });
+            builder.addOrder("u.createTime", QueryUtils.DESC);
+
+            builder.setSubFix("select u");
+            query = builder.initQuery(ViewFollow.class);
+            if (pageable.getPageSize() > 0) {
+                query.setFirstResult(Integer.parseInt(String.valueOf(pageable.getOffset()))).setMaxResults(pageable.getPageSize());
+            }
+            list = query.getResultList();
+
+            if (list != null) {
+                page = new PageImpl<>(list, pageable, count);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return page;
     }
 
     @Override
@@ -57,113 +160,6 @@ public class FollowServiceImpl implements FollowService {
         return null;
     }
 
-//    public FollowResponse followUser(Long userId, UserPrincipal currentUser) {
-//        User follower = userRepository.getOne(currentUser.getId());
-//        User following = userRepository.getOne(userId);
-//        Optional<Follow> follow = followRepository.findFollowByFollowerIdAndFollowingId(follower.getId(), following.getId());
-//        if (follow.isPresent()) {
-//            followRepository.deleteById(follow.get().getId());
-//
-//            Optional<ObserveNotification> observeNotification = observeNotificationRepository.findByNotificationCreatorIdAndNotificatorReceiverId(currentUser.getId(), userId);
-//            if (observeNotification.isPresent())
-//                observeNotificationRepository.delete(observeNotification.get());
-//
-//            return new FollowResponse(false);
-//        }
-//
-//        Optional<FollowRequest> followRequestObj = followRequestRepository.findByFollowerIdAndFollowingId(currentUser.getId(), userId);
-//        if (followRequestObj.isPresent()) {
-//            followRequestRepository.deleteById(followRequestObj.get().getId());
-//            return new FollowResponse(false);
-//        }
-//
-//        if (following.isPrivate()) {
-//            FollowRequest followRequest = new FollowRequest();
-//
-//            followRequest.setFollower(follower);
-//            followRequest.setFollowing(following);
-//
-//            followRequestRepository.save(followRequest);
-//
-//            return new FollowResponse(false);
-//        }
-//
-//
-//        Follow followObject = new Follow();
-//        followObject.setFollower(follower);
-//        followObject.setFollowing(following);
-//        followRepository.save(followObject);
-//
-//        ObserveNotification observeNotification = new ObserveNotification();
-//        observeNotification.setNotificationCreator(follower);
-//        observeNotification.setNotificationReceiver(following);
-//        observeNotificationRepository.save(observeNotification);
-//
-//        return new FollowResponse(true);
-//    }
-//
-//    public FollowResponse isFollowing(Long userId, UserPrincipal currentUser) {
-//        User follower = userRepository.getOne(currentUser.getId());
-//        User following = userRepository.getOne(userId);
-//        Optional<Follow> follow = followRepository.findFollowByFollowerIdAndFollowingId(follower.getId(), following.getId());
-//        if (follow.isPresent()) {
-//            return new FollowResponse(true);
-//        }
-//        return new FollowResponse(false);
-//    }
-//
-//    public FollowListResponse getUserFollowers(Long userId) {
-//        User user = userRepository.getOne(userId);
-//
-//        List<Follow> followerList = followRepository.findAllByFollowingId(user.getId());
-//        List<User> userList = new ArrayList<>();
-//        for (Follow follow : followerList) {
-//            userList.add(userRepository.getOne(follow.getFollower().getId()));
-//        }
-//        return ModelMapper.mapUserListToUsersSummaries(userList);
-//    }
-//
-//    public FollowResponse isUserFollowedByCurrentUser(UserPrincipal currentUser, Long userId) {
-//
-//        return new FollowResponse(false);
-//    }
-//
-//    public FollowListResponse getUserFollowing(Long userId) {
-//        User user = userRepository.getOne(userId);
-//
-//        List<Follow> followingList = followRepository.findAllByFollowerId(user.getId());
-//        List<User> userList = new ArrayList<>();
-//        for (Follow follow : followingList) {
-//            userList.add(userRepository.getOne(follow.getFollowing().getId()));
-//        }
-//        return ModelMapper.mapUserListToUsersSummaries(userList);
-//    }
-//
-//    public FollowResponse acceptFollow(Long followRequestId) {
-//        FollowRequest followRequest = followRequestRepository.getOne(followRequestId);
-//        System.out.println(followRequest);
-//        if (followRequest != null) {
-//            Follow followObject = new Follow();
-//            followObject.setFollower(followRequest.getFollower());
-//            followObject.setFollowing(followRequest.getFollowing());
-//            followRepository.save(followObject);
-//
-//
-//            ObserveNotification observeNotification = new ObserveNotification();
-//            observeNotification.setNotificationCreator(followRequest.getFollower());
-//            observeNotification.setNotificationReceiver(followRequest.getFollowing());
-//            observeNotificationRepository.save(observeNotification);
-//
-//            followRequestRepository.delete(followRequest);
-//
-//            return new FollowResponse(true);
-//        }
-//
-//        return new FollowResponse(false);
-//    }
-//
-//    public FollowResponse declineFollow(Long followRequestId) {
-//        followRequestRepository.deleteById(followRequestId);
-//        return new FollowResponse(false);
-//    }
+
+
 }

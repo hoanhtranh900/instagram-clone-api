@@ -3,6 +3,9 @@ package com.sangnk.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sangnk.core.contants.ConstantString;
+import com.sangnk.core.entity.base.Creatable;
+import com.sangnk.core.entity.base.Deletable;
+import com.sangnk.core.entity.base.Updatable;
 import com.sangnk.core.utils.H;
 import lombok.*;
 import org.hibernate.annotations.Comment;
@@ -29,7 +32,7 @@ import java.util.List;
 })
 @org.hibernate.annotations.Table(appliesTo = "ADM_USERS", comment = "Table người dùng")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class AdmUser extends Auditable implements Serializable, UserDetails {
+public class AdmUser implements Serializable, UserDetails, Creatable, Updatable, Deletable {
 
     public AdmUser(String username, String password, List<GrantedAuthority> authorities) {
         this.username=username;
@@ -40,6 +43,13 @@ public class AdmUser extends Auditable implements Serializable, UserDetails {
 
     @Transient
     private FileAttachDocument fileAvatar;
+
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     @NotEmpty(message = "{error.required.username}")
     @Comment("Tên đăng nhập")
@@ -75,6 +85,9 @@ public class AdmUser extends Auditable implements Serializable, UserDetails {
     @Column(name = "GENDER", length = 1)
     private Long gender;
 
+    @Comment("Loại tài khoan public hay cá nhân")
+    @Column(name = "TYPE", length = 1, columnDefinition = "bigint default 0")
+    private Long type = 0L;
 
     @Comment("Tên")
     @Column(name = "GIVEN_NAME", length = 100)
@@ -88,14 +101,14 @@ public class AdmUser extends Auditable implements Serializable, UserDetails {
     @Column(name = "STATUS", columnDefinition = "bigint default 0")
     private Long status = ConstantString.STATUS.active;
 
-    @Comment("Trạng thái xóa")
-    @Column(name = "IS_DELETE", columnDefinition = "bigint default 0")
-    private Long isDelete = ConstantString.IS_DELETE.active;
-
     @Email(message = "{error.pattern.EMAIL_ERROR}")
     @Comment("EMAIL")
-    @Column(name = "EMAIL", unique = true, length = 50)
+    @Column(name = "EMAIL", unique = false, length = 50)
     private String email;
+
+
+
+
 
     @Transient
     private String ipAddress;
@@ -114,13 +127,7 @@ public class AdmUser extends Auditable implements Serializable, UserDetails {
     @Transient
     private List<Long> groupIds;
 
-    public String getStatusStr() {
-        return ConstantString.STATUS.getStatusStr(this.status);
-    }
 
-    public String getIsDeleteStr() {
-        return ConstantString.IS_DELETE.getStatusStr(this.isDelete);
-    }
 
 
 
@@ -152,6 +159,8 @@ public class AdmUser extends Auditable implements Serializable, UserDetails {
         return bo;
     }
 
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return grantedAuths;
@@ -159,8 +168,11 @@ public class AdmUser extends Auditable implements Serializable, UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.isDelete != null && this.isDelete.compareTo(ConstantString.IS_DELETE.active) == 0;
+        //check value isDelete from parent class
+        return this.getIsDelete() != null && this.getIsDelete().compareTo(ConstantString.IS_DELETE.active) == 0;
+
     }
+
 
     @Override
     public boolean isAccountNonLocked() {
@@ -175,5 +187,97 @@ public class AdmUser extends Auditable implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return this.status != null && this.status.compareTo(ConstantString.STATUS.active) == 0;
+    }
+
+
+
+
+    @Comment("Trạng thái xóa")
+    @Column(name = "IS_DELETE", columnDefinition = "bigint default 0")
+    private Long isDelete = ConstantString.IS_DELETE.active;
+
+    @Comment("ID người tạo")
+    @Column(name = "CREATOR_ID")
+    private Long creatorId;
+
+    @Column(name = "CREATOR_NAME")
+    private String creatorName;
+
+    @Column(name = "CREATE_TIME")
+    private Date createTime;
+    @Column(name = "UPDATER_ID")
+    private Long updatorId;
+    @Column(name = "UPDATER_NAME")
+    private String updatorName;
+    @Column(name = "UPDATE_TIME")
+    private Date updateTime;
+    @Override
+    public Long getCreatorId() {
+        return this.creatorId;
+    }
+
+    @Override
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    @Override
+    public String getCreatorName() {
+        return this.creatorName;
+    }
+
+    @Override
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
+    }
+
+    @Override
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+
+    @Override
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Override
+    public Long getIsDelete() {
+        return this.isDelete;
+    }
+
+    @Override
+    public void setIsDelete(Long isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    @Override
+    public Long getUpdatorId() {
+        return this.updatorId;
+    }
+
+    @Override
+    public void setUpdatorId(Long updatorId) {
+        this.updatorId = updatorId;
+    }
+
+    @Override
+    public String getUpdatorName() {
+        return this.updatorName;
+    }
+
+    @Override
+    public void setUpdatorName(String updatorName) {
+        this.updatorName = updatorName;
+    }
+
+    @Override
+    public Date getUpdateTime() {
+        return this.updateTime;
+    }
+
+    @Override
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

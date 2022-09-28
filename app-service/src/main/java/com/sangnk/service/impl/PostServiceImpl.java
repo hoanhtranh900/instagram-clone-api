@@ -5,9 +5,11 @@ import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.dto.request.SearchForm;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.entity.Comment;
+import com.sangnk.core.entity.Follow;
 import com.sangnk.core.entity.Post;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.entity.view.ViewPost;
+import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.BaseException;
 import com.sangnk.core.repository.follow.FollowRepository;
 import com.sangnk.core.repository.post.LikeRepository;
@@ -15,6 +17,7 @@ import com.sangnk.core.repository.post.PostRepository;
 import com.sangnk.core.utils.*;
 import com.sangnk.service.AdmUserService;
 import com.sangnk.service.CommentService;
+import com.sangnk.service.FollowService;
 import com.sangnk.service.PostService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -62,38 +65,30 @@ public class PostServiceImpl implements PostService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private FollowService followService;
+
 
     @Override
     public Page<ViewPost> getAllPost(SearchForm searchObject, Pageable pageable) {
+        List<Follow> getListFollowByUser = followRepository.findAllByFollowerId(UtilsCommon.getUserLogin().get().getId());
+        //userIdFollowing = follow.getFollowing().getId();
+        List<Long> userIdFollowings =  getListFollowByUser.stream().map(Follow::getFollowing).map(AdmUser::getId).collect(Collectors.toList());
+
+        userIdFollowings.add(UtilsCommon.getUserLogin().get().getId());
         Page<ViewPost> page = null;
         try {
             List<ViewPost> list = new ArrayList<>();
-            String hql = " from ViewPost u left join u.unit unt where 1=1 ";
+            String hql = " from ViewPost u  where 1=1 ";
             QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
 
 
             if (StringUtils.isNotBlank(searchObject.getFullName())) {
-                builder.and(QueryUtils.LIKE, "UPPER(u.username)", "%" + searchObject.getUsername().trim().toUpperCase() + "%");
-            }
-            if (StringUtils.isNotBlank(searchObject.getPhoneNumber())) {
-                builder.and(QueryUtils.LIKE, "UPPER(u.phoneNumber)", "%" + searchObject.getPhoneNumber().trim().toUpperCase() + "%");
-            }
-            if (StringUtils.isNotBlank(searchObject.getStatus())) {
-                builder.and(QueryUtils.EQ, "u.status", Long.parseLong(searchObject.getStatus().trim()));
-            }
-            if (StringUtils.isNotBlank(searchObject.getEmail())) {
-                builder.and(QueryUtils.LIKE, "UPPER(u.email)", "%" + searchObject.getEmail().trim().toUpperCase() + "%");
-            }
-            if (StringUtils.isNotBlank(searchObject.getFullName())) {
                 builder.and(QueryUtils.LIKE, "UPPER(u.fullName)", "%" + searchObject.getFullName().trim().toUpperCase() + "%");
             }
 
-            if (StringUtils.isNotBlank(searchObject.getPosition())) {
-                builder.and(QueryUtils.LIKE, "UPPER(u.position)", "%" + searchObject.getPosition().trim().toUpperCase() + "%");
-            }
-
-            if (H.isTrue(searchObject.getUnitId())) {
-                builder.and(QueryUtils.EQ, "UPPER(unt.id)", Long.parseLong(searchObject.getUnitId().trim()));
+            if (H.isTrue(getListFollowByUser)) {
+                builder.and(QueryUtils.IN, "u.creatorId", userIdFollowings);
             }
 
 
@@ -103,15 +98,19 @@ public class PostServiceImpl implements PostService {
             pageable.getSort().iterator().forEachRemaining(order -> {
                 builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
             });
-            builder.addOrder("u.createdDate", QueryUtils.DESC);
+            builder.addOrder("u.createTime", QueryUtils.DESC);
 
             builder.setSubFix("select u");
-            query = builder.initQuery(ViewAdmUser.class);
-            if(pageable.getPageSize() > 0){
+            query = builder.initQuery(ViewPost.class);
+            if (pageable.getPageSize() > 0) {
                 query.setFirstResult(Integer.parseInt(String.valueOf(pageable.getOffset()))).setMaxResults(pageable.getPageSize());
             }
             list = query.getResultList();
 
+            String imageUrlTest = "http://192.168.0.104:8023/ig-clone/files/downloadFile/1";
+            for (ViewPost viewPost : list) {
+                viewPost.setPostImageUrls(Collections.singletonList(imageUrlTest));
+            }
             if (list != null) {
                 page = new PageImpl<>(list, pageable, count);
             }
@@ -127,7 +126,7 @@ public class PostServiceImpl implements PostService {
         return post;
     }
 
-    public Comment addComment(Long postId, String commentBody){
+    public Comment addComment(Long postId, String commentBody) {
         Comment comment = commentService.commentPost(postId, commentBody);
         return comment;
     }
@@ -136,5 +135,20 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new BaseException("Post not found with id " + postId));
         return post;
+    }
+
+    @Override
+    public Post updatePost(Post form) {
+        Post bo = getPostById(form.getId());
+        bo = bo.formToBo(form, bo);
+        utilsService.update(postRepository, bo);
+        return bo;
+    }
+
+    @Override
+    public Post deletePost(Post post) {
+        Post bo = getPostById(post.getId());
+        utilsService.delete(postRepository, bo);
+        return bo;
     }
 }

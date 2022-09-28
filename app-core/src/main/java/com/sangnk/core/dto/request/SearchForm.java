@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class SearchForm {
     private boolean init = false;
-
+    private String id;
     private String userId;
     private String fullName;
     private String position;
@@ -28,6 +28,7 @@ public class SearchForm {
 
     //POST
     private String description;
+    private Long postId;
 
 
 }

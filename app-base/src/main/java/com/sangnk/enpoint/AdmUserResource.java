@@ -39,7 +39,7 @@ public class AdmUserResource extends BaseControllerImpl<AdmUser, AdmUserServiceI
     //Secured -> là thuộc tính or giữa nhiều ROLE_
 
     protected AdmUserResource(AdmUserServiceImpl service, MessageSource messageSource) {
-        super(service, ConstantAuthor.User.view, messageSource);
+        super(service,  messageSource);
     }
 
     @Autowired private AdmUserService<AdmUser> admUserService;

@@ -61,7 +61,8 @@ public class Constants {
 			"/swagger-ui/**",
 			"/v2/api-docs/**",
 			"/webjars/**",
-			"/public/**"
+			"/public/**",
+			"/files/downloadFile/**"
 	};
 
 	public final class HEADER_FIELD {

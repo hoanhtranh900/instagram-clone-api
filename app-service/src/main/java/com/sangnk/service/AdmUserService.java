@@ -31,4 +31,5 @@ public interface AdmUserService<E> {
     AdmUser add(AdmUser form) throws BadRequestException;
 
     AdmUser edit(AdmUser form) throws BadRequestException;
+
 }

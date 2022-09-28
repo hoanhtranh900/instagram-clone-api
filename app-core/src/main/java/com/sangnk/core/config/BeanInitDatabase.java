@@ -28,7 +28,7 @@ public class BeanInitDatabase {
     public void initDataDatabase() {
 
         if (!userRepository.findByUsername("admin").isPresent()) {
-            utilsService.save(userRepository, AdmUser.builder().isDelete(0L).status(0L).username("admin").password(passwordEncoder.encode("admin")).build());
+            utilsService.save(userRepository, AdmUser.builder().isDelete(0L).type(0L).status(0L).username("admin").password(passwordEncoder.encode("admin")).build());
         }
     }
 

@@ -2,20 +2,20 @@ package com.sangnk.service;
 
 
 import com.sangnk.core.contants.ConstantString;
+import com.sangnk.core.dto.request.SearchForm;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.entity.Comment;
+import com.sangnk.core.entity.Follow;
 import com.sangnk.core.entity.Post;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.entity.view.ViewComment;
+import com.sangnk.core.entity.view.ViewFollow;
 import com.sangnk.core.exception.BaseException;
 import com.sangnk.core.exception.ResourceNotFoundException;
 import com.sangnk.core.repository.AdmUserRepository;
 import com.sangnk.core.repository.post.CommentRepository;
 import com.sangnk.core.repository.post.PostRepository;
-import com.sangnk.core.utils.H;
-import com.sangnk.core.utils.QueryBuilder;
-import com.sangnk.core.utils.QueryUtils;
-import com.sangnk.core.utils.UtilsCommon;
+import com.sangnk.core.utils.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -37,14 +37,18 @@ public class CommentService {
     private AdmUserRepository userRepository;
 
     @Autowired
-    private PostRepository postRepository;
-
+    private PostService postService;
     @PersistenceContext
     private EntityManager entityManager;
+    @Autowired
+    private FollowService followService;
+
+    @Autowired
+    private UtilsService utilsService;
 
     public Comment commentPost(Long postId, String commentBody) {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new BaseException("Post not found with id " + postId));
+        Post post = postService.getPostById(postId);
+//        if (!validateComment(post)) throw new BaseException("Comment is not allowed");
 
         Optional<AdmUser> user = UtilsCommon.getUserLogin();
 
@@ -55,10 +59,13 @@ public class CommentService {
         comment.setUser(user.get());
 
 
-        return commentRepository.save(comment);
+        utilsService.save(commentRepository, comment);
+        return comment;
     }
 
-    public Page<ViewComment> getCommentsByPostId(Long postId, Pageable pageable) {
+
+
+    public Page<ViewComment> getCommentsByPostId(SearchForm searchForm, Pageable pageable) {
         Page<ViewComment> page = null;
         try {
             List<ViewComment> list = new ArrayList<>();
@@ -66,7 +73,7 @@ public class CommentService {
             QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
 
 
-            builder.and(QueryUtils.EQ, "u.status", postId);
+            builder.and(QueryUtils.EQ, "pt.id", Long.parseLong(searchForm.getId()));
 
 
             Query query = builder.initQuery(false);
@@ -75,11 +82,11 @@ public class CommentService {
             pageable.getSort().iterator().forEachRemaining(order -> {
                 builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
             });
-            builder.addOrder("u.createdDate", QueryUtils.DESC);
+            builder.addOrder("u.createTime", QueryUtils.DESC);
 
             builder.setSubFix("select u");
-            query = builder.initQuery(ViewAdmUser.class);
-            if(pageable.getPageSize() > 0){
+            query = builder.initQuery(ViewComment.class);
+            if (pageable.getPageSize() > 0) {
                 query.setFirstResult(Integer.parseInt(String.valueOf(pageable.getOffset()))).setMaxResults(pageable.getPageSize());
             }
             list = query.getResultList();

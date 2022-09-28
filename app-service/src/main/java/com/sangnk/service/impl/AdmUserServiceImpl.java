@@ -60,6 +60,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
             List<ViewAdmUser> list = new ArrayList<>();
             String hql = " from ViewAdmUser u left join u.unit unt where 1=1 ";
             QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
+            builder.and(QueryUtils.EQ, "u.isDelete", ConstantString.IS_DELETE.active);
 
             List<QueryBuilder.ConditionObject> conditionObjects = new ArrayList<>();
             conditionObjects.add(new QueryBuilder.ConditionObject(QueryUtils.EQ,"u.status", ConstantString.STATUS.active));
@@ -97,7 +98,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
             pageable.getSort().iterator().forEachRemaining(order -> {
                 builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
             });
-            builder.addOrder("u.createdDate", QueryUtils.DESC);
+            builder.addOrder("u.createTime", QueryUtils.DESC);
 
             builder.setSubFix("select u");
             query = builder.initQuery(ViewAdmUser.class);
@@ -105,6 +106,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
                 query.setFirstResult(Integer.parseInt(String.valueOf(pageable.getOffset()))).setMaxResults(pageable.getPageSize());
             }
             list = query.getResultList();
+
 
             if (list != null) {
                 page = new PageImpl<>(list, pageable, count);
@@ -183,25 +185,18 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
 
     @Override
     public AdmUser add(AdmUser form) throws BadRequestException {
-        /*List<AdmUserType> admUserTypes = form.getTypeUsers();
-        form.setTypeUsers(null);
-        List<AdmUserSession> admUserSessions = form.getSessions();
-        form.setSessions(null);
-        List<AdmGroup> admGroups = form.getGroups();
-        form.setTypeUsers(null);
-        List<AdmDept> admDepts = form.getDepts();
-        form.setDepts(null);*/
 
         //if (documentBasicRepository.findByDocumentCode(dto.getDocumentCode()).isPresent())
-        if(admUserRepository.findAdmUserByEmail(form.getEmail()).isPresent()) {
-            throw new BadRequestException( messageSource.getMessage("error.EMAIL_EXIT", null, UtilsCommon.getLocale()));
-        }
+//        if(admUserRepository.findAdmUserByEmail(form.getEmail()).isPresent()) {
+//            throw new BadRequestException( messageSource.getMessage("error.EMAIL_EXIT", null, UtilsCommon.getLocale()));
+//        }
 
         if(admUserRepository.findByUsername(form.getUsername()).isPresent()) {
             throw new BadRequestException((messageSource.getMessage("error.USERNAME_EXIT", null, UtilsCommon.getLocale())));
         }
 
         form.setPassword(passwordEncoder.encode(form.getPassword()));
+        utilsService.save(admUserRepository, form);
 
         return form;
     }
@@ -215,4 +210,6 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         utilsService.update(admUserRepository, bo);
         return bo;
     }
+
+
 }
