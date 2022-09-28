@@ -15,12 +15,4 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
     Optional<Post> findById(Long postId);
 
-    Page<Post> findByCreatedBy(Long userId, Pageable pageable);
-
-    List<Post> findByCreatedBy(Long userId);
-
-    long countByCreatedBy(Long userId);
-
-    @Query("SELECT p from Post p where p.createdBy in :followingUsersIds")
-    Page<Post> findAllPostsByFollowedUsers(@Param("followingUsersIds") List<Long> followingUsersIds, Pageable pageable);
-}
+   }

@@ -6,13 +6,10 @@ import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.BaseException;
 import com.sangnk.core.service.BaseServiceImpl;
-import com.sangnk.core.utils.H;
-import com.sangnk.core.utils.UtilsCommon;
+import com.sangnk.core.utils.*;
 import com.sangnk.service.*;
 import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.dto.request.SearchForm;
-import com.sangnk.core.utils.QueryBuilder;
-import com.sangnk.core.utils.QueryUtils;
 import com.sangnk.core.repository.AdmUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -52,6 +49,9 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
     @Autowired private PasswordEncoder passwordEncoder;
 
     @Value("${supper.type_user_logins}") private String typeUserLogins;
+
+    @Autowired
+    private UtilsService utilsService;
 
     @Override
     public Page<ViewAdmUser> getPage(SearchForm searchObject, Pageable pageable) {
@@ -121,7 +121,8 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         List<AdmUser> users = admUserRepository.loadByListIds(ids);
         for (AdmUser user: users) {
             user.setIsDelete(ConstantString.IS_DELETE.delete);
-            admUserRepository.save(user);
+//            admUserRepository.save(user);
+            utilsService.save(admUserRepository, user);
         }
         return users;
     }
@@ -131,7 +132,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         List<AdmUser> users = admUserRepository.loadByListIds(ids);
         for (AdmUser user: users) {
             user.setStatus(ConstantString.STATUS.lock);
-            admUserRepository.save(user);
+            utilsService.save(admUserRepository, user);
         }
         return users;
     }
@@ -141,7 +142,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         List<AdmUser> users = admUserRepository.loadByListIds(ids);
         for (AdmUser user: users) {
             user.setStatus(ConstantString.STATUS.active);
-            admUserRepository.save(user);
+            utilsService.save(admUserRepository, user);
         }
         return users;
     }
@@ -153,7 +154,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
     }
 
     @Override
-    public Optional<AdmUser> updateProfile(AdmUser form) throws BadRequestException {
+    public AdmUser updateProfile(AdmUser form) throws BadRequestException {
         // lấy user DB
         AdmUser user = get(form.getId()).orElseThrow(
                 () -> new BadRequestException(messageSource.getMessage("error.ENTITY_NOT_FOUND", new Object[]{"User"}, UtilsCommon.getLocale()))
@@ -161,11 +162,13 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         // sét lại data cần sửa
         user = user.updateProfile(form, user);
         // save lại thông tin
-        return save(user);
+//        return save(user);
+        utilsService.save(admUserRepository, user);
+        return user;
     }
 
     @Override
-    public Optional<AdmUser> changePass(AdmUser form) throws BadRequestException {
+    public AdmUser changePass(AdmUser form) throws BadRequestException {
         AdmUser user = admUserRepository.findByUsername(UtilsCommon.getUserLogin().get().getUsername()).orElseThrow(() -> new BaseException(messageSource.getMessage("error.ENTITY_NOT_FOUND", new Object[]{"User"}, UtilsCommon.getLocale())));
         if (form.getPassword() == null || form.getRePassWord() == null || !form.getPassword().equals(form.getRePassWord())) {
             throw new BadRequestException(messageSource.getMessage("error.ENTITY_NOT_FOUND", new Object[]{"Authorities"}, UtilsCommon.getLocale()));
@@ -174,11 +177,12 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
             throw new BadRequestException(messageSource.getMessage("MSG_PW_OLD_INVALID", null, UtilsCommon.getLocale()));
         }
         user.setPassword(passwordEncoder.encode(form.getPassword()));
-        return update(user);
+        utilsService.update(admUserRepository, user);
+        return user;
     }
 
     @Override
-    public Optional<AdmUser> add(AdmUser form) throws BadRequestException {
+    public AdmUser add(AdmUser form) throws BadRequestException {
         /*List<AdmUserType> admUserTypes = form.getTypeUsers();
         form.setTypeUsers(null);
         List<AdmUserSession> admUserSessions = form.getSessions();
@@ -199,15 +203,16 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
 
         form.setPassword(passwordEncoder.encode(form.getPassword()));
 
-        return Optional.of(form);
+        return form;
     }
 
     @Override
-    public Optional<AdmUser> edit(AdmUser form) throws BadRequestException {
+    public AdmUser edit(AdmUser form) throws BadRequestException {
         AdmUser bo = get(form.getId()).orElseThrow(
                 () -> new BadRequestException(messageSource.getMessage("error.ENTITY_NOT_FOUND", new Object[]{"AdmUser"}, UtilsCommon.getLocale()))
         );
         bo = bo.formToBo(form, bo);
-        return update(bo);
+        utilsService.update(admUserRepository, bo);
+        return bo;
     }
 }

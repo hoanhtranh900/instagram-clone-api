@@ -1,5 +1,6 @@
 package com.sangnk.core.utils;
 
+import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.entity.AdmUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,7 +43,10 @@ public class UtilsCommon {
             AdmUser user = (AdmUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             return Optional.of(user);
         } catch (Exception e) {
-            return Optional.empty();
+            AdmUser unAuthen = new AdmUser();
+            unAuthen.setId(-1L);
+            unAuthen.setFullName("UnAuthen");
+            return Optional.of(unAuthen);
         }
     }
 

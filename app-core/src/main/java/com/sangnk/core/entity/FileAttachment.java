@@ -49,12 +49,6 @@ public class FileAttachment extends Auditable implements Serializable {
     @Column(name = "IS_DELETE", columnDefinition = "bigint default 0")
     private Long isDelete = ConstantString.IS_DELETE.active;
 
-    @Column(name = "CREATOR_ID")
-    private Long creatorId;
-
-    @Column(name = "UPDATOR_ID")
-    private Long updatorId;
-
     @Column(name = "SIGNED_DOC_ID", length = 100)
     private String signedDocId;
 

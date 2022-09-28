@@ -1,5 +1,8 @@
 package com.sangnk.core.entity;
 
+import com.sangnk.core.entity.base.Creatable;
+import com.sangnk.core.entity.base.Deletable;
+import com.sangnk.core.entity.base.Updatable;
 import com.sangnk.core.utils.UtilsDate;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,10 +17,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-@Getter
-@Setter
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Auditable implements Serializable {
+public class Auditable implements Creatable, Updatable, Deletable, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,37 +26,89 @@ public abstract class Auditable implements Serializable {
     @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long isDelete;
+    private Long creatorId;
+    private String creatorName;
+    private Date createTime;
+    private Long updatorId;
+    private String updatorName;
+    private Date updateTime;
 
-    @Column(name = "CREATED_DATE")//, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date createdDate;
-
-    @Column(name = "MODIFIED_DATE")//, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date modifiedDate;
-
-    @Column(name = "CREATE_BY", columnDefinition = "VARCHAR(255) DEFAULT 'Unknown'", length = 100)
-    @CreatedBy
-    protected String createBy;
-
-    @Column(name = "MODIFIED_BY", columnDefinition = "VARCHAR(255) DEFAULT 'Unknown'", length = 100)
-    @LastModifiedBy
-    protected String modifiedBy;
-
-    @Transient
-    private String createdDateStr;
-    @Transient
-    private String modifiedDateStr;
-
-    public String getCreatedDateStr() {
-        this.createdDateStr = UtilsDate.date2str(this.createdDate, "dd/MM/yyyy HH:mm:ss");
-        return this.createdDateStr;
+    public Long getId() {
+        return id;
     }
 
-    public String getModifiedDateStr() {
-        this.modifiedDateStr = UtilsDate.date2str(this.modifiedDate, "dd/MM/yyyy HH:mm:ss");
-        return this.modifiedDateStr;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public Long getCreatorId() {
+        return this.creatorId;
+    }
+
+    @Override
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    @Override
+    public String getCreatorName() {
+        return this.creatorName;
+    }
+
+    @Override
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
+    }
+
+    @Override
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+
+    @Override
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Override
+    public Long getIsDelete() {
+        return this.isDelete;
+    }
+
+    @Override
+    public void setIsDelete(Long isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    @Override
+    public Long getUpdatorId() {
+        return this.updatorId;
+    }
+
+    @Override
+    public void setUpdatorId(Long updatorId) {
+        this.updatorId = updatorId;
+    }
+
+    @Override
+    public String getUpdatorName() {
+        return this.updatorName;
+    }
+
+    @Override
+    public void setUpdatorName(String updatorName) {
+        this.updatorName = updatorName;
+    }
+
+    @Override
+    public Date getUpdateTime() {
+        return this.updateTime;
+    }
+
+    @Override
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

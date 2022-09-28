@@ -30,6 +30,4 @@ public class SearchForm {
     private String description;
 
 
-
-
 }

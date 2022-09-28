@@ -2,7 +2,8 @@ package com.sangnk.core.dto.request;
 
 import com.sangnk.core.entity.FileAttachmentMetadata;
 import com.sangnk.core.entity.FileImageExtract;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package com.sangnk.service.impl;
 
 import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.dto.request.LoginRequest;
-import com.sangnk.core.dto.response.ISTokenInfo;
 import com.sangnk.core.dto.response.UserInfo;
+import com.sangnk.core.dto.wso2is.ISTokenInfo;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.exception.UnauthorizedException;
 import com.sangnk.core.repository.*;

@@ -2,6 +2,7 @@ package com.sangnk.core.config;
 
 import com.sangnk.core.entity.*;
 import com.sangnk.core.repository.*;
+import com.sangnk.core.utils.UtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
@@ -20,11 +21,14 @@ public class BeanInitDatabase {
     @Autowired private AdmUserRepository userRepository;
     @Autowired private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UtilsService utilsService;
+
     @Bean
     public void initDataDatabase() {
 
         if (!userRepository.findByUsername("admin").isPresent()) {
-            userRepository.save(AdmUser.builder().isDelete(0L).status(0L).username("admin").password(passwordEncoder.encode("admin")).build());
+            utilsService.save(userRepository, AdmUser.builder().isDelete(0L).status(0L).username("admin").password(passwordEncoder.encode("admin")).build());
         }
     }
 

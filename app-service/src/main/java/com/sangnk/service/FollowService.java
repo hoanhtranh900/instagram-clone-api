@@ -1,16 +1,21 @@
 package com.sangnk.service;
 
-import com.freq.auth.payload.follow.FollowListResponse;
-import com.freq.auth.payload.follow.FollowResponse;
-import com.freq.auth.security.UserPrincipal;
+
+import com.sangnk.core.entity.Follow;
+import com.sangnk.core.entity.view.ViewFollow;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public interface FollowService {
-    FollowResponse followUser(Long userId, UserPrincipal currentUser);
-    FollowResponse isFollowing(Long userId, UserPrincipal currentUser);
-    FollowListResponse getUserFollowers(Long userId);
-    FollowResponse isUserFollowedByCurrentUser(UserPrincipal currentUser, Long userId);
-    FollowListResponse getUserFollowing(Long userId);
-    FollowResponse acceptFollow(Long followRequestId);
-    FollowResponse declineFollow(Long followRequestId);
+    Follow followUser(Long userIdAdmUser);
+    Follow isFollowing(Long userIdAdmUser);
+    Page<ViewFollow> getUserFollowers(Long userId, Pageable pageable);
+    Follow isUserFollowedByCurrentUser(Long userId);
+    Page<ViewFollow> getUserFollowing(Long userId, Pageable pageable);
+    Follow acceptFollow(Long followRequestId);
+    Follow declineFollow(Long followRequestId);
 }

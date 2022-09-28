@@ -1,4 +1,4 @@
-package com.sangnk.core.dto.response;
+package com.sangnk.core.dto.wso2is;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

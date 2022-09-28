@@ -25,10 +25,10 @@ public interface AdmUserService<E> {
     List<AdmUser> unlocks(List<Long> ids);
 
     AdmUser profile(String username);
-    Optional<AdmUser> updateProfile(AdmUser form) throws BadRequestException;
-    Optional<AdmUser> changePass(AdmUser form) throws BadRequestException;
+    AdmUser updateProfile(AdmUser form) throws BadRequestException;
+    AdmUser changePass(AdmUser form) throws BadRequestException;
 
-    Optional<AdmUser> add(AdmUser form) throws BadRequestException;
+    AdmUser add(AdmUser form) throws BadRequestException;
 
-    Optional<AdmUser> edit(AdmUser form) throws BadRequestException;
+    AdmUser edit(AdmUser form) throws BadRequestException;
 }

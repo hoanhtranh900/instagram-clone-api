@@ -1,5 +1,6 @@
 package com.sangnk.core.dto.response;
 
+import com.sangnk.core.dto.wso2is.ISTokenInfo;
 import lombok.*;
 
 import java.util.List;

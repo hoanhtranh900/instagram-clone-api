@@ -113,10 +113,10 @@ public class FileAttachDocumentServiceImpl extends BaseServiceImpl<FileAttachDoc
         originalAttachDocument.setFilePath(finalOriginalFile.getAbsolutePath());
         originalAttachDocument.setIsEncrypt(isEncrypted ? ConstantString.ATTACH_DOCUMENT.ENCRYPTED : null);
         originalAttachDocument.setContentType(contentType);
-        originalAttachDocument.setCreateBy(actor.getUsername());
-        originalAttachDocument.setCreatedDate(new Date());
-        originalAttachDocument.setModifiedBy(actor.getUsername());
-        originalAttachDocument.setModifiedDate(new Date());
+        originalAttachDocument.setCreatorName(actor.getUsername());
+        originalAttachDocument.setCreateTime(new Date());
+        originalAttachDocument.setUpdatorName(actor.getUsername());
+        originalAttachDocument.setUpdateTime(new Date());
         return originalAttachDocument;
     }
 
@@ -262,8 +262,8 @@ public class FileAttachDocumentServiceImpl extends BaseServiceImpl<FileAttachDoc
     private FileImageExtract populateImageExtract(FileAttachDocument pdfAttachDocument, Long id, File imageConvert, Integer pageNumber, Long vbAttachmentId, AdmUser actor) {
         FileImageExtract imageExtract = new FileImageExtract();
         if (actor != null) {
-            imageExtract.setCreateBy(actor.getFullName());
-            imageExtract.setModifiedBy(actor.getFullName());
+            imageExtract.setCreatorName(actor.getFullName());
+            imageExtract.setUpdatorName(actor.getFullName());
         }
         imageExtract.setVbAttachmentId(vbAttachmentId);
         imageExtract.setAttachmentMetadataId(id);

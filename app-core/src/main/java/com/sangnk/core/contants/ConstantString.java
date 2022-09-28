@@ -1,6 +1,5 @@
 package com.sangnk.core.contants;
 
-import com.sangnk.core.dto.response.ConfigSystem;
 
 import java.util.*;
 
@@ -12,69 +11,6 @@ public class ConstantString {
 
     static {
         Map<String, Object> all = new HashMap<>();
-        all.put("STATUS", STATUS.lstAll);
-        all.put("IS_DELETE", IS_DELETE.lstAll);
-
-        List<ConfigSystem> ADM_USER_TYPE_USER = new ArrayList<>();
-        for (ADM_USER_TYPE.Type str : ADM_USER_TYPE.Type.values()) {
-            ADM_USER_TYPE_USER.add(
-                    ConfigSystem.builder().name(str.getAction()).value(str.description).build()
-            );
-        }
-        all.put("ADM_USER_TYPE_USER", ADM_USER_TYPE_USER);
-
-        List<ConfigSystem> LST_PENALIZE_DECISION_STATUS = new ArrayList<>();
-        for (PENALIZE_DECISION.Status str : PENALIZE_DECISION.Status.values()) {
-            LST_PENALIZE_DECISION_STATUS.add(
-                    ConfigSystem.builder().id(str.getAction()).value(str.description).build()
-            );
-        }
-        all.put("PENALIZE_DECISION_STATUS", LST_PENALIZE_DECISION_STATUS);
-
-        List<ConfigSystem> LST_FILE_ATTACHMENT = new ArrayList<>();
-        for (FILE_ATTACHMENT.FILE str : FILE_ATTACHMENT.FILE.values()) {
-            LST_FILE_ATTACHMENT.add(
-                    ConfigSystem.builder()
-                            .id(str.getObjectType())
-                            .value(str.getStorageType())
-                            .description(str.getDescription())
-                            .build()
-            );
-        }
-        all.put("FILE_ATTACHMENT", LST_FILE_ATTACHMENT);
-
-        List<ConfigSystem> ADMINISTRATIVE_SANCTION_TYPE = new ArrayList<>();
-        for (ADMINISTRATIVE_SANCTION.Type str : ADMINISTRATIVE_SANCTION.Type.values()) {
-            ADMINISTRATIVE_SANCTION_TYPE.add(
-                    ConfigSystem.builder().id(str.getAction()).value(str.description).build()
-            );
-        }
-        all.put("ADMINISTRATIVE_SANCTION_TYPE", ADMINISTRATIVE_SANCTION_TYPE);
-
-        List<ConfigSystem> ADMINISTRATIVE_SANCTION_METHOD_TYPE = new ArrayList<>();
-        for (ADMINISTRATIVE_SANCTION.MethodType str : ADMINISTRATIVE_SANCTION.MethodType.values()) {
-            ADMINISTRATIVE_SANCTION_METHOD_TYPE.add(
-                    ConfigSystem.builder().id(str.getAction()).value(str.description).build()
-            );
-        }
-        all.put("ADMINISTRATIVE_SANCTION_METHOD_TYPE", ADMINISTRATIVE_SANCTION_METHOD_TYPE);
-
-        List<ConfigSystem> DECISION_PENALIZE_ATTACHMENT_TYPE = new ArrayList<>();
-        for (DECISION_PENALIZE_ATTACHMENT.Type str : DECISION_PENALIZE_ATTACHMENT.Type.values()) {
-            DECISION_PENALIZE_ATTACHMENT_TYPE.add(
-                    ConfigSystem.builder().id(str.getAction()).value(str.description).build()
-            );
-        }
-        all.put("DECISION_PENALIZE_ATTACHMENT_TYPE", DECISION_PENALIZE_ATTACHMENT_TYPE);
-
-        List<ConfigSystem> CM_UNIT_LEVEL = new ArrayList<>();
-        for (CM_UNIT.LEVEL str : CM_UNIT.LEVEL.values()) {
-            CM_UNIT_LEVEL.add(
-                    ConfigSystem.builder().id(str.getAction()).value(str.description).build()
-            );
-        }
-        all.put("CM_UNIT_LEVEL", CM_UNIT_LEVEL);
-
         map = Collections.unmodifiableMap(all);
     }
 
@@ -92,7 +28,6 @@ public class ConstantString {
         String lock_str = "Đã khóa";
         String expire_str = "Đã hết hạn";
 
-        List<ConfigSystem> lstAll = Arrays.asList(ConfigSystem.builder().id(active).value(active_str).build(), ConfigSystem.builder().id(lock).value(lock_str).build(), ConfigSystem.builder().id(expire).value(expire_str).build());
         static String getStatusStr(Long status) {
             if (status == null) {
                 return null;
@@ -116,7 +51,6 @@ public class ConstantString {
         String active_str = "Đang sử dụng";
         String delete_str = "Đã xóa";
 
-        List<ConfigSystem> lstAll = Arrays.asList(ConfigSystem.builder().id(active).value(active_str).build(), ConfigSystem.builder().id(delete).value(delete_str).build());
         static String getStatusStr(Long status) {
             if (status == null) {
                 return null;

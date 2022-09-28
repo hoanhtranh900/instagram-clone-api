@@ -2,9 +2,6 @@ package com.sangnk.service;
 
 
 import com.sangnk.core.contants.ConstantString;
-import com.sangnk.core.dto.post.CommentRequest;
-import com.sangnk.core.dto.post.response.PagedResponse;
-import com.sangnk.core.dto.post.response.comment.CommentResponse;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.entity.Comment;
 import com.sangnk.core.entity.Post;
@@ -45,7 +42,7 @@ public class CommentService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Comment commentPost(Long postId, CommentRequest commentRequest) {
+    public Comment commentPost(Long postId, String commentBody) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new BaseException("Post not found with id " + postId));
 
@@ -53,7 +50,7 @@ public class CommentService {
 
 
         Comment comment = new Comment();
-        comment.setBody(commentRequest.getBody());
+        comment.setBody(commentBody);
         comment.setPost(post);
         comment.setUser(user.get());
 
