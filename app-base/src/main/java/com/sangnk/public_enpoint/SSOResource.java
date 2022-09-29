@@ -4,6 +4,8 @@ import com.sangnk.core.contants.Constants;
 import com.sangnk.core.dto.request.LoginRequest;
 import com.sangnk.core.dto.response.ResponseData;
 import com.sangnk.core.dto.response.UserInfo;
+import com.sangnk.core.entity.AdmUser;
+import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.Result;
 import com.sangnk.core.exception.UnauthorizedException;
 import com.sangnk.core.utils.UtilsCommon;
@@ -49,7 +51,11 @@ public class SSOResource {
     }
 
 
-
+    @ApiOperation(response = AdmUser.class, notes = Constants.NOTE_API + "empty_note", value = "Đăng ký tài khoản", authorizations = {@Authorization(value = Constants.API_KEY)})
+    @PostMapping(path = "/register")
+    public ResponseEntity<ResponseData> register(@RequestBody @Valid AdmUser user) throws BadRequestException, UnauthorizedException {
+        return new ResponseEntity<>(new ResponseData<>(srsSystemSercice.register(user), Result.SUCCESS), HttpStatus.OK);
+    }
 
 
 }

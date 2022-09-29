@@ -8,12 +8,6 @@ package com.sangnk.core.contants;
 
 public class Constants {
 
-	public static final String mail_user_name = ConfigProperties.getProperty("mail.user_name");
-	public static final String mail_pass_word = ConfigProperties.getProperty("mail.pass_word");
-	public static final String mail_host = ConfigProperties.getProperty("mail.host");
-	public static final Integer mail_port = Integer.parseInt(ConfigProperties.getProperty("mail.port"));
-	public static final String mail_to = ConfigProperties.getProperty("mail.to");
-	public static final String mail_debug = ConfigProperties.getProperty("mail.debug");
 
 
 	public static final String error = "urn:ietf:params:scim:api:messages:2.0:Error";

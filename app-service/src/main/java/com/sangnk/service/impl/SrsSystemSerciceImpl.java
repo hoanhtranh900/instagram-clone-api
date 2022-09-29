@@ -5,10 +5,13 @@ import com.sangnk.core.dto.request.LoginRequest;
 import com.sangnk.core.dto.response.UserInfo;
 import com.sangnk.core.dto.wso2is.ISTokenInfo;
 import com.sangnk.core.entity.AdmUser;
+import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.UnauthorizedException;
 import com.sangnk.core.repository.*;
 import com.sangnk.core.security.TokenHelper;
 import com.sangnk.core.utils.UtilsCommon;
+import com.sangnk.core.utils.UtilsService;
+import com.sangnk.service.AdmUserService;
 import com.sangnk.service.SrsSystemSercice;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -44,6 +48,10 @@ public class SrsSystemSerciceImpl implements SrsSystemSercice {
     private MessageSource messageSource;
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired private AdmUserService<AdmUser> admUserService;
+    @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired private UtilsService utilsService;
 
     @Override
     public UserInfo loginJWT(LoginRequest loginRequest) throws UnauthorizedException {
@@ -118,5 +126,14 @@ public class SrsSystemSerciceImpl implements SrsSystemSercice {
         }
     }
 
+    @Override
+    public AdmUser register(AdmUser user) throws UnauthorizedException, BadRequestException {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(admUserRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new BadRequestException((messageSource.getMessage("error.USERNAME_EXIT", null, UtilsCommon.getLocale())));
+        }
+        utilsService.save(admUserRepository, user);
+        return user;
+    }
 
 }

@@ -37,21 +37,7 @@ public class BeanConfig {
         return threadPoolTaskExecutor;
     }
 
-    @Bean
-    public JavaMailSender getJavaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(Constants.mail_host);
-        mailSender.setPort(Constants.mail_port);
 
-        mailSender.setUsername(Constants.mail_user_name);
-        mailSender.setPassword(Constants.mail_pass_word);
-
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.debug", Constants.mail_debug);
-        props.put("mail.smtp.starttls.enable", "true");
-        return mailSender;
-    }
 
     @Bean
     public ModelMapper modelMapper() {

@@ -2,6 +2,8 @@ package com.sangnk.service;
 
 import com.sangnk.core.dto.request.LoginRequest;
 import com.sangnk.core.dto.response.UserInfo;
+import com.sangnk.core.entity.AdmUser;
+import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.UnauthorizedException;
 
 /*
@@ -14,6 +16,8 @@ public interface SrsSystemSercice {
     UserInfo getAccessTokenByRefreshTokenJwt(String refreshToken) throws UnauthorizedException;
     //Logout JWT
     boolean logoutJwt();
+
+    AdmUser register(AdmUser user) throws UnauthorizedException, BadRequestException;
 
 
 }
