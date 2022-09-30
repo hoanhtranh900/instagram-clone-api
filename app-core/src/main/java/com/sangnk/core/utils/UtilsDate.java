@@ -68,6 +68,17 @@ public class UtilsDate {
         return cal;
     }
 
+    public static String date3str(Date createTime) {
+        //get day,month
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(createTime);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
+
+        String result = "THÁNG " + month + " " + day;
+        return result;
+    }
+
     // ngày hiện tại
     public int getCurrentDay() {
         Calendar cal = Calendar.getInstance();

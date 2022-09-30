@@ -31,6 +31,11 @@ public class Post implements Serializable, Creatable, Updatable, Deletable {
     @Size(max = 100)
     @Column(name = "DESCRIPTION")
     private String description;
+
+    //total Like
+    @Column(name = "TOTAL_LIKE", columnDefinition = "bigint default 0")
+    private Long totalLike = 0L;
+
     @org.hibernate.annotations.Comment("Trạng thái xóa")
     @Column(name = "IS_DELETE", columnDefinition = "bigint default 0")
     private Long isDelete = ConstantString.IS_DELETE.active;

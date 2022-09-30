@@ -3,6 +3,7 @@ package com.sangnk.service;
 
 import com.sangnk.core.dto.request.SearchForm;
 import com.sangnk.core.entity.Comment;
+import com.sangnk.core.entity.Like;
 import com.sangnk.core.entity.Post;
 import com.sangnk.core.entity.view.ViewPost;
 import org.springframework.data.domain.Page;
@@ -30,4 +31,9 @@ public interface PostService {
 
      public Post deletePost(Post post);
 
+     Like likeOrUnlike(Long postId);
+
+     List<Like> getLikeByPostId(Long postId);
+
+     Like checkLike(Long postId);
 }

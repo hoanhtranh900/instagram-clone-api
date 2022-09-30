@@ -68,4 +68,24 @@ public class PostController {
         SearchForm searchObject = JsonHelper.jsonToObject(search, SearchForm.class);
         return new ResponseEntity<>(new ResponseData<>(commentService.getCommentsByPostId(searchObject, pageable), Result.SUCCESS), HttpStatus.OK);
     }
+
+
+    //like or unlike post
+    @PostMapping(value = "/like/{id}")
+    public ResponseEntity<ResponseData> likeOrUnlike(@PathVariable("id") Long postId) {
+        return new ResponseEntity<>(new ResponseData<>(postService.likeOrUnlike(postId), Result.SUCCESS), HttpStatus.OK);
+    }
+
+    //check like
+    @GetMapping(value = "/like/{postid}")
+public ResponseEntity<ResponseData> checkLike(@PathVariable("postid") Long postId) {
+        return new ResponseEntity<>(new ResponseData<>(postService.checkLike(postId), Result.SUCCESS), HttpStatus.OK);
+    }
+
+
+    //get all like of post
+    @GetMapping(value = "/like/getPage/{id}")
+    public ResponseEntity<ResponseData> getLike(@PathVariable("id") Long postId) {
+        return new ResponseEntity<>(new ResponseData<>(postService.getLikeByPostId(postId), Result.SUCCESS), HttpStatus.OK);
+    }
 }

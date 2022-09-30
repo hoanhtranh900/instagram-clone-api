@@ -3,10 +3,7 @@ package com.sangnk.service.impl;
 
 import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.dto.request.SearchForm;
-import com.sangnk.core.entity.AdmUser;
-import com.sangnk.core.entity.Comment;
-import com.sangnk.core.entity.Follow;
-import com.sangnk.core.entity.Post;
+import com.sangnk.core.entity.*;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.entity.view.ViewPost;
 import com.sangnk.core.exception.BadRequestException;
@@ -15,14 +12,12 @@ import com.sangnk.core.repository.follow.FollowRepository;
 import com.sangnk.core.repository.post.LikeRepository;
 import com.sangnk.core.repository.post.PostRepository;
 import com.sangnk.core.utils.*;
-import com.sangnk.service.AdmUserService;
-import com.sangnk.service.CommentService;
-import com.sangnk.service.FollowService;
-import com.sangnk.service.PostService;
+import com.sangnk.service.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.*;
 import org.springframework.http.HttpHeaders;
@@ -62,11 +57,15 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private UtilsService utilsService;
 
+    @Autowired
+    private FileIOService fileIOService;
+
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
     private FollowService followService;
+
 
 
     @Override
@@ -98,7 +97,7 @@ public class PostServiceImpl implements PostService {
             pageable.getSort().iterator().forEachRemaining(order -> {
                 builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
             });
-            builder.addOrder("u.createTime", QueryUtils.DESC);
+//            builder.addOrder("u.createTime", QueryUtils.DESC);
 
             builder.setSubFix("select u");
             query = builder.initQuery(ViewPost.class);
@@ -107,9 +106,13 @@ public class PostServiceImpl implements PostService {
             }
             list = query.getResultList();
 
-            String imageUrlTest = "http://192.168.0.104:8023/ig-clone/files/downloadFile/1";
+
             for (ViewPost viewPost : list) {
-                viewPost.setPostImageUrls(Collections.singletonList(imageUrlTest));
+                System.out.println(ConstantString.imageUrlTest);
+                FileAttachment fileAttachment = H.isTrue(fileIOService.findByObjectIdAndObjectType(viewPost.getId(), ConstantString.OBJECT_TYPE.POST, null)) ? fileIOService.findByObjectIdAndObjectType(viewPost.getId(), ConstantString.OBJECT_TYPE.POST, null).get(0) : null;
+                if (H.isTrue(fileAttachment)) {
+                    viewPost.setPostImageUrl(ConstantString.imageUrlTest + fileAttachment.getFileServiceId());
+                }
             }
             if (list != null) {
                 page = new PageImpl<>(list, pageable, count);
@@ -150,5 +153,33 @@ public class PostServiceImpl implements PostService {
         Post bo = getPostById(post.getId());
         utilsService.delete(postRepository, bo);
         return bo;
+    }
+
+    @Override
+    public Like likeOrUnlike(Long postId) {
+        Post post = getPostById(postId);
+        Like like = likeRepository.findByPostIdAndUserId(postId, UtilsCommon.getUserLogin().get().getId(), ConstantString.IS_DELETE.active).orElse(null);
+        if (H.isTrue(like)) {
+            utilsService.delete(likeRepository, like);
+            post.setTotalLike(post.getTotalLike() - 1);
+        } else {
+            like = new Like();
+            like.setPost(getPostById(postId));
+            like.setUser(UtilsCommon.getUserLogin().get());
+            utilsService.save(likeRepository, like);
+            post.setTotalLike(post.getTotalLike() + 1);
+        }
+        utilsService.update(postRepository, post);
+        return like;
+    }
+
+    @Override
+    public List<Like> getLikeByPostId(Long postId) {
+        return likeRepository.findAllByPostIdAndIsDelete(postId, ConstantString.IS_DELETE.active);
+    }
+
+    @Override
+    public Like checkLike(Long postId) {
+        return likeRepository.findByPostIdAndUserId(postId, UtilsCommon.getUserLogin().get().getId(), ConstantString.IS_DELETE.active).orElse(null);
     }
 }

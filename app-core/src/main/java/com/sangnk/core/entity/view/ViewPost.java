@@ -6,6 +6,7 @@ import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.entity.base.Creatable;
 import com.sangnk.core.entity.base.Deletable;
 import com.sangnk.core.entity.base.Updatable;
+import com.sangnk.core.utils.UtilsDate;
 import lombok.*;
 import org.hibernate.annotations.Subselect;
 
@@ -31,14 +32,24 @@ public class ViewPost  implements Serializable, Creatable, Updatable, Deletable 
     private String description;
 
     @Transient
-    private List<String> postImageUrls;
+    private String postImageUrl;
+
+    @Transient
+    private String creteTimeStr;
 
     @org.hibernate.annotations.Comment("Trạng thái xóa")
     @Column(name = "IS_DELETE", columnDefinition = "bigint default 0")
     private Long isDelete = ConstantString.IS_DELETE.active;
+
+
     @org.hibernate.annotations.Comment("ID người tạo")
     @Column(name = "CREATOR_ID")
     private Long creatorId;
+
+    //ViewAdmUser = creator
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CREATOR_ID", insertable = false, updatable = false)
+    private ViewAdmUser creator;
 
     @Column(name = "CREATOR_NAME")
     private String creatorName;
@@ -51,10 +62,15 @@ public class ViewPost  implements Serializable, Creatable, Updatable, Deletable 
     private String updatorName;
     @Column(name = "UPDATE_TIME")
     private Date updateTime;
+
+    @Column(name = "TOTAL_LIKE")
+    private Long totalLike ;
+
     @Override
     public Long getCreatorId() {
         return this.creatorId;
     }
+
 
     @Override
     public void setCreatorId(Long creatorId) {
@@ -119,5 +135,9 @@ public class ViewPost  implements Serializable, Creatable, Updatable, Deletable 
     @Override
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getCreteTimeStr() {
+        return UtilsDate.date3str(this.createTime);
     }
 }

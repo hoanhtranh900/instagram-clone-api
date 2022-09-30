@@ -38,6 +38,7 @@ public class ApplicationConfigCommon {
 
         @Bean
         public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+            System.out.println("dev active");
             PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
             pspc.setLocations(DEV_PROPERTIES);
             return pspc;
@@ -52,6 +53,7 @@ public class ApplicationConfigCommon {
 
         @Bean
         public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+            System.out.println("sit active");
             PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
             pspc.setLocations(SIT_PROPERTIES);
             return pspc;
@@ -66,6 +68,7 @@ public class ApplicationConfigCommon {
 
         @Bean
         public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+            System.out.println("prod active");
             PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
             pspc.setLocations(PROD_PROPERTIES);
             return pspc;

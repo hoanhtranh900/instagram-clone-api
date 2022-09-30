@@ -3,20 +3,17 @@ package com.sangnk.core.entity.view;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sangnk.core.contants.ConstantString;
+import com.sangnk.core.contants.CategoryBuffer;
 
 import com.sangnk.core.entity.base.Creatable;
 import com.sangnk.core.entity.base.Deletable;
 import com.sangnk.core.entity.base.Updatable;
-import com.sangnk.core.utils.H;
 import lombok.*;
-import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.Subselect;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /*
 * Tạo view bằng @Subselect
@@ -34,14 +31,7 @@ public class ViewAdmUser  implements Serializable, Creatable, Updatable, Deletab
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "PROVINCE_ID")
-    private Long provinceId;
 
-    @Column(name = "DISTRICT_ID")
-    private Long districtId;
-
-    @Column(name = "COMMUNE_ID")
-    private Long communeId;
 
     @Column(name = "USER_NAME")
     private String username;
@@ -93,6 +83,12 @@ public class ViewAdmUser  implements Serializable, Creatable, Updatable, Deletab
     @Transient
     private String addressFull;
 
+    @Transient
+    private String avatar;
+
+    public String getAvatar() {
+        return CategoryBuffer.getUserAvataById(id);
+    }
 
     @org.hibernate.annotations.Comment("ID người tạo")
     @Column(name = "CREATOR_ID")
