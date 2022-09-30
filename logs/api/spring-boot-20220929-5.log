@@ -1,0 +1,76 @@
+2022-09-29 23:11:53,422 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-09-29 23:11:53,453 INFO o.s.b.StartupInfoLogger [main] Starting IgCloneApplication using Java 1.8.0_202 on DESKTOP-FSGNT1P with PID 17552 (D:\instagram-backend\api\app-base\target\classes started by za in D:\instagram-backend\api)
+2022-09-29 23:11:53,455 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-09-29 23:11:54,087 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-29 23:11:54,140 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 47 ms. Found 10 JPA repository interfaces.
+2022-09-29 23:11:54,696 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityConfig' of type [com.sangnk.core.security.MethodSecurityConfig$$EnhancerBySpringCGLIB$$7ade6399] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-09-29 23:11:54,872 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8023 (http)
+2022-09-29 23:11:54,878 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8023"]
+2022-09-29 23:11:54,878 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2022-09-29 23:11:54,878 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-09-29 23:11:54,992 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-09-29 23:11:54,992 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1486 ms
+2022-09-29 23:11:55,216 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: db.primary.datasource]
+2022-09-29 23:11:55,250 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.7.Final
+2022-09-29 23:11:55,346 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-29 23:11:55,456 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect
+2022-09-29 23:11:56,188 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-29 23:11:56,194 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
+2022-09-29 23:11:56,872 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect$$EnhancerBySpringCGLIB$$2c71559d
+2022-09-29 23:11:56,884 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.MySQLUnicodeDialect$$EnhancerBySpringCGLIB$$9f0d592b
+2022-09-29 23:11:56,891 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.Oracle10gUnicodeDialect$$EnhancerBySpringCGLIB$$4b0a7893
+2022-09-29 23:11:56,900 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.PostgreSQLUnicodeDialect$$EnhancerBySpringCGLIB$$c831d4d1
+2022-09-29 23:11:56,907 INFO o.h.d.Dialect [main] HHH000400: Using dialect: com.sangnk.core.dialect.SQLServerUnicodeDialect$$EnhancerBySpringCGLIB$$564bb0fa
+2022-09-29 23:11:57,169 INFO o.q.i.StdSchedulerFactory [main] Using default implementation for ThreadExecutor
+2022-09-29 23:11:57,176 INFO o.q.c.SchedulerSignalerImpl [main] Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-09-29 23:11:57,177 INFO o.q.c.QuartzScheduler [main] Quartz Scheduler v.2.3.2 created.
+2022-09-29 23:11:57,177 INFO o.q.s.RAMJobStore [main] RAMJobStore initialized.
+2022-09-29 23:11:57,178 INFO o.q.c.QuartzScheduler [main] Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-09-29 23:11:57,178 INFO o.q.i.StdSchedulerFactory [main] Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-09-29 23:11:57,178 INFO o.q.i.StdSchedulerFactory [main] Quartz scheduler version: 2.3.2
+2022-09-29 23:11:57,178 INFO o.q.c.QuartzScheduler [main] JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3f8090db
+2022-09-29 23:11:57,235 INFO o.s.b.a.e.w.EndpointLinksResolver [main] Exposing 15 endpoint(s) beneath base path '/actuator'
+2022-09-29 23:11:57,458 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,458 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/**', OPTIONS] with []
+2022-09-29 23:11:57,459 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-resources/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,459 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-resources/**'] with []
+2022-09-29 23:11:57,459 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui.html**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,459 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui.html**'] with []
+2022-09-29 23:11:57,459 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,459 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui/**'] with []
+2022-09-29 23:11:57,459 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v2/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,459 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/v2/api-docs/**'] with []
+2022-09-29 23:11:57,459 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/webjars/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,459 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/webjars/**'] with []
+2022-09-29 23:11:57,459 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/public/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,459 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/public/**'] with []
+2022-09-29 23:11:57,459 WARN o.s.s.c.a.w.b.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/files/downloadFile/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-09-29 23:11:57,459 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/files/downloadFile/**'] with []
+2022-09-29 23:11:57,486 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will not secure Or [Ant [pattern='/**']]
+2022-09-29 23:11:57,556 DEBUG o.h.e.j.s.SqlStatementLogger [main] select admuser0_.id as id1_0_, admuser0_.ADDRESS as address2_0_, admuser0_.BIRTHDAY as birthday3_0_, admuser0_.CREATE_TIME as create_t4_0_, admuser0_.CREATOR_ID as creator_5_0_, admuser0_.CREATOR_NAME as creator_6_0_, admuser0_.EMAIL as email7_0_, admuser0_.FULL_NAME as full_nam8_0_, admuser0_.GENDER as gender9_0_, admuser0_.GIVEN_NAME as given_n10_0_, admuser0_.IS_DELETE as is_dele11_0_, admuser0_.PASSWORD as passwor12_0_, admuser0_.PHONE_NUMBER as phone_n13_0_, admuser0_.POSITION as positio14_0_, admuser0_.STATUS as status15_0_, admuser0_.SURNAME as surname16_0_, admuser0_.TYPE as type17_0_, admuser0_.UPDATE_TIME as update_18_0_, admuser0_.UPDATER_ID as updater19_0_, admuser0_.UPDATER_NAME as updater20_0_, admuser0_.USER_NAME as user_na21_0_ from ADM_USERS admuser0_ where admuser0_.USER_NAME=?
+2022-09-29 23:11:57,559 TRACE o.h.t.d.s.BasicBinder [main] binding parameter [1] as [VARCHAR] - [admin]
+2022-09-29 23:11:57,816 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8023"]
+2022-09-29 23:11:57,828 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8023 (http) with context path '/ig-clone'
+2022-09-29 23:11:58,074 INFO o.s.s.q.SchedulerFactoryBean [main] Starting Quartz Scheduler now
+2022-09-29 23:11:58,075 INFO o.q.c.QuartzScheduler [main] Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-09-29 23:11:58,083 INFO o.s.b.StartupInfoLogger [main] Started IgCloneApplication in 4.864 seconds (JVM running for 5.811)
+2022-09-29 23:11:58,653 INFO o.a.j.l.DirectJDKLog [RMI TCP Connection(2)-192.168.0.104] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-29 23:12:25,508 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8023-exec-1] select admuser0_.id as id1_0_, admuser0_.ADDRESS as address2_0_, admuser0_.BIRTHDAY as birthday3_0_, admuser0_.CREATE_TIME as create_t4_0_, admuser0_.CREATOR_ID as creator_5_0_, admuser0_.CREATOR_NAME as creator_6_0_, admuser0_.EMAIL as email7_0_, admuser0_.FULL_NAME as full_nam8_0_, admuser0_.GENDER as gender9_0_, admuser0_.GIVEN_NAME as given_n10_0_, admuser0_.IS_DELETE as is_dele11_0_, admuser0_.PASSWORD as passwor12_0_, admuser0_.PHONE_NUMBER as phone_n13_0_, admuser0_.POSITION as positio14_0_, admuser0_.STATUS as status15_0_, admuser0_.SURNAME as surname16_0_, admuser0_.TYPE as type17_0_, admuser0_.UPDATE_TIME as update_18_0_, admuser0_.UPDATER_ID as updater19_0_, admuser0_.UPDATER_NAME as updater20_0_, admuser0_.USER_NAME as user_na21_0_ from ADM_USERS admuser0_ where admuser0_.USER_NAME=?
+2022-09-29 23:12:25,508 TRACE o.h.t.d.s.BasicBinder [http-nio-8023-exec-1] binding parameter [1] as [VARCHAR] - [user2]
+2022-09-29 23:12:25,543 ERROR c.s.c.RestApiExceptionHandler [http-nio-8023-exec-1] error - POST 192.168.0.104:8023/ig-clone/public/v1/sso/register - No message found under code 'error.USERNAME_EXIT' for locale 'en_US'.
+2022-09-29 23:12:25,636 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8023-exec-2] select admuser0_.id as id1_0_, admuser0_.ADDRESS as address2_0_, admuser0_.BIRTHDAY as birthday3_0_, admuser0_.CREATE_TIME as create_t4_0_, admuser0_.CREATOR_ID as creator_5_0_, admuser0_.CREATOR_NAME as creator_6_0_, admuser0_.EMAIL as email7_0_, admuser0_.FULL_NAME as full_nam8_0_, admuser0_.GENDER as gender9_0_, admuser0_.GIVEN_NAME as given_n10_0_, admuser0_.IS_DELETE as is_dele11_0_, admuser0_.PASSWORD as passwor12_0_, admuser0_.PHONE_NUMBER as phone_n13_0_, admuser0_.POSITION as positio14_0_, admuser0_.STATUS as status15_0_, admuser0_.SURNAME as surname16_0_, admuser0_.TYPE as type17_0_, admuser0_.UPDATE_TIME as update_18_0_, admuser0_.UPDATER_ID as updater19_0_, admuser0_.UPDATER_NAME as updater20_0_, admuser0_.USER_NAME as user_na21_0_ from ADM_USERS admuser0_ where admuser0_.USER_NAME=?
+2022-09-29 23:12:25,636 TRACE o.h.t.d.s.BasicBinder [http-nio-8023-exec-2] binding parameter [1] as [VARCHAR] - [user2]
+2022-09-29 23:12:25,638 ERROR c.s.c.RestApiExceptionHandler [http-nio-8023-exec-2] error - POST 192.168.0.104:8023/ig-clone/public/v1/sso/register - No message found under code 'error.USERNAME_EXIT' for locale 'en_US'.
+2022-09-29 23:13:52,200 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-09-29 23:13:52,281 INFO o.s.s.q.SchedulerFactoryBean [SpringApplicationShutdownHook] Shutting down Quartz Scheduler
+2022-09-29 23:13:52,281 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-09-29 23:13:52,281 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-09-29 23:13:52,282 INFO o.q.c.QuartzScheduler [SpringApplicationShutdownHook] Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-09-29 23:13:52,285 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'db.primary.datasource'

@@ -30,7 +30,6 @@ public class CrmUserDetailsService implements UserDetailsService {
     @Autowired private AdmUserRepository userRepository;
 
     @Autowired private MessageSource messageSource;
-    @Value("${supper.type_user_logins}") private String typeUserLogins;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

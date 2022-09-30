@@ -1,10 +1,13 @@
 package com.sangnk.service.impl;
 
 import com.sangnk.core.contants.Constants;
+import com.sangnk.core.dto.request.LoginRequest;
+import com.sangnk.core.dto.response.UserInfo;
 import com.sangnk.core.entity.*;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.BaseException;
+import com.sangnk.core.exception.UnauthorizedException;
 import com.sangnk.core.service.BaseServiceImpl;
 import com.sangnk.core.utils.*;
 import com.sangnk.service.*;
@@ -48,7 +51,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
     @PersistenceContext private EntityManager entityManager;
     @Autowired private PasswordEncoder passwordEncoder;
 
-    @Value("${supper.type_user_logins}") private String typeUserLogins;
+    @Autowired private SrsSystemSercice srsSystemSercice;
 
     @Autowired
     private UtilsService utilsService;
@@ -210,6 +213,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         utilsService.update(admUserRepository, bo);
         return bo;
     }
+
 
 
 }

@@ -12,7 +12,7 @@
     <artifactId>ig-clone-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ig-clone-module</name>
-
+    <packaging>pom</packaging>
     <modules>
         <module>app-core</module>
         <module>app-base</module>

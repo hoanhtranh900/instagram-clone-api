@@ -21,12 +21,14 @@ import java.util.Optional;
 public class UtilsCommon {
 
     public static Locale getLocale() {
-        try {
-            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-            return request.getLocale();
-        } catch (Exception e) {
-            return Locale.getDefault();
-        }
+//        try {
+//            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//            return request.getLocale();
+//        } catch (Exception e) {
+//            return Locale.getDefault();
+//        }
+        //allway return vietnam
+        return new Locale("vi", "VN");
     }
 
     public static String getUserNameLogin() {

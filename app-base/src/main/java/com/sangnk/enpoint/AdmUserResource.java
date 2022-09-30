@@ -9,6 +9,7 @@ import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.BaseException;
 import com.sangnk.core.exception.Result;
+import com.sangnk.core.exception.UnauthorizedException;
 import com.sangnk.core.utils.JsonHelper;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.utils.UtilsCommon;
@@ -88,4 +89,5 @@ public class AdmUserResource extends BaseControllerImpl<AdmUser, AdmUserServiceI
     public ResponseEntity<ResponseData> unlocks(@RequestBody @Valid List<Long> ids) {
         return new ResponseEntity<>(new ResponseData<>(admUserService.unlocks(ids), Result.SUCCESS), HttpStatus.OK);
     }
+
 }
