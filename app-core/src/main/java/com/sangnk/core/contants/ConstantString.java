@@ -1,13 +1,25 @@
 package com.sangnk.core.contants;
 
 
+import com.sangnk.core.utils.H;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.*;
 
 /*
 * ConstantString
 * */
 public class ConstantString {
+
+
     public static final Map<String, Object> map;
+
+    public static final String imageUrlTest = ConfigProperties.getProperty("server.domain") + (H.isTrue(ConfigProperties.getProperty("server.port")) ? (":"+ConfigProperties.getProperty("server.port")) : "") + ConfigProperties.getProperty("server.servlet.context-path") + "/files/downloadFile/";
+    public static interface  OBJECT_TYPE {
+        Long POST = 1L;
+        Long COMMENT = 2L;
+        Long AVATAR = 3L;
+    }
 
     static {
         Map<String, Object> all = new HashMap<>();

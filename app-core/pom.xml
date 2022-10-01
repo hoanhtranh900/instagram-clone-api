@@ -34,41 +34,41 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>cz.habarta.typescript-generator</groupId>
-                <artifactId>typescript-generator-maven-plugin</artifactId>
-                <version>${typescript-generator.version}</version>
-                <configuration>
-                    <generateSpringApplicationClient>true</generateSpringApplicationClient>
-                    <jsonLibrary>jackson2</jsonLibrary>
-                    <outputFileType>implementationFile</outputFileType>
-                    <classPatterns>
-                        <pattern>com.sangnk.core.entity.*</pattern>
-                        <pattern>com.sangnk.core.entity.view.*</pattern>
-                        <pattern>com.sangnk.core.dto.request.*</pattern>
-                        <pattern>com.sangnk.core.dto.response.*</pattern>
-                        <pattern>com.sangnk.core.dto.wso2is.*</pattern>
-                    </classPatterns>
-                    <scanSpringApplication>true</scanSpringApplication>
-                    <generateSpringApplicationClient>true</generateSpringApplicationClient>
-                    <extensions>
-                        <extension>cz.habarta.typescript.generator.ext.AxiosClientExtension</extension>
-                    </extensions>
-                    <excludeClasses>
-                        <class>java.io.Serializable</class>
-                    </excludeClasses>
-                    <outputFile>target/rest.ts</outputFile>
-                    <!--<outputKind>global</outputKind>-->
-                    <outputKind>module</outputKind>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>cz.habarta.typescript-generator</groupId>
-                        <artifactId>typescript-generator-spring</artifactId>
-                        <version>${typescript-generator.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>cz.habarta.typescript-generator</groupId>-->
+<!--                <artifactId>typescript-generator-maven-plugin</artifactId>-->
+<!--                <version>${typescript-generator.version}</version>-->
+<!--                <configuration>-->
+<!--                    <generateSpringApplicationClient>true</generateSpringApplicationClient>-->
+<!--                    <jsonLibrary>jackson2</jsonLibrary>-->
+<!--                    <outputFileType>implementationFile</outputFileType>-->
+<!--                    <classPatterns>-->
+<!--                        <pattern>com.sangnk.core.entity.*</pattern>-->
+<!--                        <pattern>com.sangnk.core.entity.view.*</pattern>-->
+<!--                        <pattern>com.sangnk.core.dto.request.*</pattern>-->
+<!--                        <pattern>com.sangnk.core.dto.response.*</pattern>-->
+<!--                        <pattern>com.sangnk.core.dto.wso2is.*</pattern>-->
+<!--                    </classPatterns>-->
+<!--                    <scanSpringApplication>true</scanSpringApplication>-->
+<!--                    <generateSpringApplicationClient>true</generateSpringApplicationClient>-->
+<!--                    <extensions>-->
+<!--                        <extension>cz.habarta.typescript.generator.ext.AxiosClientExtension</extension>-->
+<!--                    </extensions>-->
+<!--                    <excludeClasses>-->
+<!--                        <class>java.io.Serializable</class>-->
+<!--                    </excludeClasses>-->
+<!--                    <outputFile>target/rest.ts</outputFile>-->
+<!--                    &lt;!&ndash;<outputKind>global</outputKind>&ndash;&gt;-->
+<!--                    <outputKind>module</outputKind>-->
+<!--                </configuration>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>cz.habarta.typescript-generator</groupId>-->
+<!--                        <artifactId>typescript-generator-spring</artifactId>-->
+<!--                        <version>${typescript-generator.version}</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

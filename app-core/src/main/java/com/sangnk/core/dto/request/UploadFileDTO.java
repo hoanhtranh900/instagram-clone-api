@@ -18,6 +18,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UploadFileDTO {
     private Long objectId;
-    private Long objectType;
     private List<Long> listFileIds;
 }
