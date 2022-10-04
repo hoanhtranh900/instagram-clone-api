@@ -14,7 +14,7 @@ public class ConstantString {
 
     public static final Map<String, Object> map;
 
-    public static final String imageUrlTest = ConfigProperties.getProperty("server.domain") + (H.isTrue(ConfigProperties.getProperty("server.port")) ? (":"+ConfigProperties.getProperty("server.port")) : "") + ConfigProperties.getProperty("server.servlet.context-path") + "/files/downloadFile/";
+    public static final String imageUrlTest = ConfigProperties.getProperty("server.domain") + ((H.isTrue(ConfigProperties.getProperty("server.port")) && !H.isTrue(ConfigProperties.getProperty("usedomain"))) ? (":"+ConfigProperties.getProperty("server.port")) : "") + ConfigProperties.getProperty("server.servlet.context-path") + "/files/downloadFile/";
     public static interface  OBJECT_TYPE {
         Long POST = 1L;
         Long COMMENT = 2L;
