@@ -1,9 +1,6 @@
 package com.sangnk.core.config.websocket;
 
-import com.dgtt.core.entity.Bidder;
-import com.dgtt.core.model.bidder.ChatMessage;
-import com.dgtt.core.repository.BidderRepository;
-import com.dgtt.core.repository.UserRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +18,7 @@ public class WebSocketEventListener {
 
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired private BidderRepository bidderRepository;
+
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
@@ -32,25 +27,6 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
-        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
-        Long userId = (Long) headerAccessor.getSessionAttributes().get("userId");
-        Long bidderId = (Long) headerAccessor.getSessionAttributes().get("bidderId");
-        Long productId = (Long) headerAccessor.getSessionAttributes().get("productId");
-        if (userId != null && bidderId != null && productId != null) {
-            Bidder bidder = bidderRepository.findById(bidderId).orElse(null);
-            if (bidder != null) {
-
-                bidder.setOnlineStatus(false);
-                bidderRepository.save(bidder);
-
-                /* socket OFFLINE */
-                ChatMessage chatMessage = new ChatMessage();
-                chatMessage.setType(ChatMessage.MessageType.OFFLINE);
-                chatMessage.setSender(bidder.getUser().getUserName());
-                chatMessage.setUserId(userId);
-                messagingTemplate.convertAndSend("/topic/group/bargain-product", chatMessage);
-            }
-        }
     }
 }

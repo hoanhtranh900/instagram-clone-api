@@ -104,7 +104,7 @@ public class UtilsService {
     public <DomainType extends Deletable, IDFieldType extends Serializable> void delete(
             JpaRepository<DomainType, IDFieldType> repository, DomainType model) {
         Optional<AdmUser> user = UtilsCommon.getUserLogin();
-        model.setIsDelete(ConstantString.IS_DELETE.active);
+        model.setIsDelete(ConstantString.IS_DELETE.delete);
         populateForUpdate(model, user.get());
         repository.save(model);
     }
@@ -114,7 +114,7 @@ public class UtilsService {
         if (!H.isTrue(models)) return;
         Optional<AdmUser> user = UtilsCommon.getUserLogin();
         H.each(models, (index, model) -> {
-            model.setIsDelete(ConstantString.IS_DELETE.active);
+            model.setIsDelete(ConstantString.IS_DELETE.delete);
             populateForUpdate(model, user.get());
         });
         repository.saveAll(models);

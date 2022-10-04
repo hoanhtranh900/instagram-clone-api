@@ -67,12 +67,11 @@ public class PostServiceImpl implements PostService {
     private FollowService followService;
 
 
-
     @Override
     public Page<ViewPost> getAllPost(SearchForm searchObject, Pageable pageable) {
         List<Follow> getListFollowByUser = followRepository.findAllByFollowerId(UtilsCommon.getUserLogin().get().getId());
         //userIdFollowing = follow.getFollowing().getId();
-        List<Long> userIdFollowings =  getListFollowByUser.stream().map(Follow::getFollowing).map(AdmUser::getId).collect(Collectors.toList());
+        List<Long> userIdFollowings = getListFollowByUser.stream().map(Follow::getFollowing).map(AdmUser::getId).collect(Collectors.toList());
 
         userIdFollowings.add(UtilsCommon.getUserLogin().get().getId());
         Page<ViewPost> page = null;
@@ -159,15 +158,22 @@ public class PostServiceImpl implements PostService {
     public Like likeOrUnlike(Long postId) {
         Post post = getPostById(postId);
         Like like = likeRepository.findByPostIdAndUserId(postId, UtilsCommon.getUserLogin().get().getId(), ConstantString.IS_DELETE.active).orElse(null);
-        if (H.isTrue(like)) {
-            utilsService.delete(likeRepository, like);
-            post.setTotalLike(post.getTotalLike() - 1);
-        } else {
+        if (!H.isTrue(like)) {
             like = new Like();
             like.setPost(getPostById(postId));
             like.setUser(UtilsCommon.getUserLogin().get());
-            utilsService.save(likeRepository, like);
+//            utilsService.save(likeRepository, like);
+            likeRepository.save(like);
             post.setTotalLike(post.getTotalLike() + 1);
+
+        } else {
+            likeRepository.delete(like);
+            if (post.getTotalLike() > 0) {
+                post.setTotalLike(post.getTotalLike() - 1);
+            } else {
+                post.setTotalLike(0L);
+            }
+            like.setIsDelete(ConstantString.IS_DELETE.delete);
         }
         utilsService.update(postRepository, post);
         return like;

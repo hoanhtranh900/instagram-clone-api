@@ -55,6 +55,7 @@ public class Constants {
 			"/swagger-ui/**",
 			"/v2/api-docs/**",
 			"/webjars/**",
+			"/ws/**",
 			"/public/**",
 			"/files/downloadFile/**"
 	};
