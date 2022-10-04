@@ -12747,3 +12747,156 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'sv
 01/10/2022 03:11:45 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
 01/10/2022 03:11:45 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
 01/10/2022 03:11:45 INFO  - Closing JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
+04/10/2022 09:50:22 INFO  - Starting IgCloneApplication using Java 1.8.0_202 on DESKTOP-OSGG71M with PID 17936 (D:\instagram-clone\instagram-clone-api\app-base\target\classes started by sangnk in D:\instagram-clone\instagram-clone-api)
+04/10/2022 09:50:22 INFO  - No active profile set, falling back to 1 default profile: "default"
+04/10/2022 09:50:24 INFO  - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+04/10/2022 09:50:24 INFO  - Finished Spring Data repository scanning in 102 ms. Found 10 JPA repository interfaces.
+04/10/2022 09:50:25 INFO  - Bean 'methodSecurityConfig' of type [com.sangnk.core.security.MethodSecurityConfig$$EnhancerBySpringCGLIB$$817dda7b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+04/10/2022 09:50:25 INFO  - Tomcat initialized with port(s): 8023 (http)
+04/10/2022 09:50:25 INFO  - Starting service [Tomcat]
+04/10/2022 09:50:25 INFO  - Starting Servlet engine: [Apache Tomcat/9.0.60]
+04/10/2022 09:50:26 INFO  - Initializing Spring embedded WebApplicationContext
+04/10/2022 09:50:26 INFO  - Root WebApplicationContext: initialization completed in 3093 ms
+04/10/2022 09:50:26 INFO  - HHH000204: Processing PersistenceUnitInfo [name: db.primary.datasource]
+04/10/2022 09:50:26 INFO  - HHH000412: Hibernate ORM core version 5.6.7.Final
+04/10/2022 09:50:26 INFO  - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+04/10/2022 09:50:27 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect
+04/10/2022 09:50:28 DEBUG - alter table POST add column TOTAL_LIKE bigint default 0
+04/10/2022 09:50:28 INFO  - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+04/10/2022 09:50:28 INFO  - Initialized JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
+04/10/2022 09:50:30 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect$$EnhancerBySpringCGLIB$$3310cc7f
+04/10/2022 09:50:30 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.MySQLUnicodeDialect$$EnhancerBySpringCGLIB$$a5acd00d
+04/10/2022 09:50:30 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.Oracle10gUnicodeDialect$$EnhancerBySpringCGLIB$$51a9ef75
+04/10/2022 09:50:30 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.PostgreSQLUnicodeDialect$$EnhancerBySpringCGLIB$$ced14bb3
+04/10/2022 09:50:30 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.SQLServerUnicodeDialect$$EnhancerBySpringCGLIB$$5ceb27dc
+04/10/2022 09:50:31 INFO  - Using default implementation for ThreadExecutor
+04/10/2022 09:50:31 INFO  - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+04/10/2022 09:50:31 INFO  - Quartz Scheduler v.2.3.2 created.
+04/10/2022 09:50:31 INFO  - RAMJobStore initialized.
+04/10/2022 09:50:31 INFO  - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+04/10/2022 09:50:31 INFO  - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+04/10/2022 09:50:31 INFO  - Quartz scheduler version: 2.3.2
+04/10/2022 09:50:31 INFO  - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5c519681
+04/10/2022 09:50:31 INFO  - Exposing 15 endpoint(s) beneath base path '/actuator'
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/**', OPTIONS] with []
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/swagger-resources/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/swagger-resources/**'] with []
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/swagger-ui.html**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/swagger-ui.html**'] with []
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/swagger-ui/**'] with []
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/v2/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/v2/api-docs/**'] with []
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/webjars/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/webjars/**'] with []
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/public/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/public/**'] with []
+04/10/2022 09:50:31 WARN  - You are asking Spring Security to ignore Ant [pattern='/files/downloadFile/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 09:50:31 INFO  - Will secure Ant [pattern='/files/downloadFile/**'] with []
+04/10/2022 09:50:31 INFO  - Will not secure Or [Ant [pattern='/**']]
+04/10/2022 09:50:32 DEBUG - select admuser0_.id as id1_0_, admuser0_.ADDRESS as address2_0_, admuser0_.BIRTHDAY as birthday3_0_, admuser0_.CREATE_TIME as create_t4_0_, admuser0_.CREATOR_ID as creator_5_0_, admuser0_.CREATOR_NAME as creator_6_0_, admuser0_.EMAIL as email7_0_, admuser0_.FULL_NAME as full_nam8_0_, admuser0_.GENDER as gender9_0_, admuser0_.GIVEN_NAME as given_n10_0_, admuser0_.IS_DELETE as is_dele11_0_, admuser0_.PASSWORD as passwor12_0_, admuser0_.PHONE_NUMBER as phone_n13_0_, admuser0_.POSITION as positio14_0_, admuser0_.STATUS as status15_0_, admuser0_.SURNAME as surname16_0_, admuser0_.TYPE as type17_0_, admuser0_.UPDATE_TIME as update_18_0_, admuser0_.UPDATER_ID as updater19_0_, admuser0_.UPDATER_NAME as updater20_0_, admuser0_.USER_NAME as user_na21_0_ from ADM_USERS admuser0_ where admuser0_.USER_NAME=?
+04/10/2022 09:50:32 TRACE - binding parameter [1] as [VARCHAR] - [admin]
+04/10/2022 09:50:32 INFO  - Tomcat started on port(s): 8023 (http) with context path '/ig-clone'
+04/10/2022 09:50:33 INFO  - Starting Quartz Scheduler now
+04/10/2022 09:50:33 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+04/10/2022 09:50:33 INFO  - Started IgCloneApplication in 11.643 seconds (JVM running for 14.361)
+04/10/2022 09:50:34 INFO  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+04/10/2022 09:50:34 WARN  - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=64832] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114) ~[?:1.8.0_202]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:405) ~[?:1.8.0_202]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:377) ~[?:1.8.0_202]
+	at java.lang.Thread.run(Thread.java:748) ~[?:1.8.0_202]
+04/10/2022 09:50:34 WARN  - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=64832] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114) ~[?:1.8.0_202]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:405) ~[?:1.8.0_202]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:377) ~[?:1.8.0_202]
+	at java.lang.Thread.run(Thread.java:748) ~[?:1.8.0_202]
+04/10/2022 09:50:34 WARN  - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=64832] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114) ~[?:1.8.0_202]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:405) ~[?:1.8.0_202]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:377) ~[?:1.8.0_202]
+	at java.lang.Thread.run(Thread.java:748) ~[?:1.8.0_202]
+04/10/2022 10:36:20 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+04/10/2022 10:36:20 INFO  - Shutting down Quartz Scheduler
+04/10/2022 10:36:20 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+04/10/2022 10:36:20 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+04/10/2022 10:36:20 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+04/10/2022 10:36:20 INFO  - Closing JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
+04/10/2022 10:36:26 INFO  - Starting IgCloneApplication using Java 1.8.0_202 on DESKTOP-OSGG71M with PID 12604 (D:\instagram-clone\instagram-clone-api\app-base\target\classes started by sangnk in D:\instagram-clone\instagram-clone-api)
+04/10/2022 10:36:26 INFO  - No active profile set, falling back to 1 default profile: "default"
+04/10/2022 10:36:27 INFO  - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+04/10/2022 10:36:27 INFO  - Finished Spring Data repository scanning in 99 ms. Found 10 JPA repository interfaces.
+04/10/2022 10:36:28 INFO  - Bean 'methodSecurityConfig' of type [com.sangnk.core.security.MethodSecurityConfig$$EnhancerBySpringCGLIB$$ab198086] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+04/10/2022 10:36:29 INFO  - Tomcat initialized with port(s): 8023 (http)
+04/10/2022 10:36:29 INFO  - Starting service [Tomcat]
+04/10/2022 10:36:29 INFO  - Starting Servlet engine: [Apache Tomcat/9.0.60]
+04/10/2022 10:36:29 INFO  - Initializing Spring embedded WebApplicationContext
+04/10/2022 10:36:29 INFO  - Root WebApplicationContext: initialization completed in 2882 ms
+04/10/2022 10:36:30 INFO  - HHH000204: Processing PersistenceUnitInfo [name: db.primary.datasource]
+04/10/2022 10:36:30 INFO  - HHH000412: Hibernate ORM core version 5.6.7.Final
+04/10/2022 10:36:30 INFO  - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+04/10/2022 10:36:30 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect
+04/10/2022 10:36:32 INFO  - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+04/10/2022 10:36:32 INFO  - Initialized JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
+04/10/2022 10:36:33 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.MariaDB103UnicodeDialect$$EnhancerBySpringCGLIB$$5cac728a
+04/10/2022 10:36:33 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.MySQLUnicodeDialect$$EnhancerBySpringCGLIB$$cf487618
+04/10/2022 10:36:33 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.Oracle10gUnicodeDialect$$EnhancerBySpringCGLIB$$7b459580
+04/10/2022 10:36:33 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.PostgreSQLUnicodeDialect$$EnhancerBySpringCGLIB$$f86cf1be
+04/10/2022 10:36:33 INFO  - HHH000400: Using dialect: com.sangnk.core.dialect.SQLServerUnicodeDialect$$EnhancerBySpringCGLIB$$8686cde7
+04/10/2022 10:36:34 INFO  - Using default implementation for ThreadExecutor
+04/10/2022 10:36:34 INFO  - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+04/10/2022 10:36:34 INFO  - Quartz Scheduler v.2.3.2 created.
+04/10/2022 10:36:34 INFO  - RAMJobStore initialized.
+04/10/2022 10:36:34 INFO  - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+04/10/2022 10:36:34 INFO  - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+04/10/2022 10:36:34 INFO  - Quartz scheduler version: 2.3.2
+04/10/2022 10:36:34 INFO  - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4d57fc11
+04/10/2022 10:36:34 INFO  - Exposing 15 endpoint(s) beneath base path '/actuator'
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/**', OPTIONS] with []
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/swagger-resources/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/swagger-resources/**'] with []
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/swagger-ui.html**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/swagger-ui.html**'] with []
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/swagger-ui/**'] with []
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/v2/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/v2/api-docs/**'] with []
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/webjars/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/webjars/**'] with []
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/public/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/public/**'] with []
+04/10/2022 10:36:35 WARN  - You are asking Spring Security to ignore Ant [pattern='/files/downloadFile/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+04/10/2022 10:36:35 INFO  - Will secure Ant [pattern='/files/downloadFile/**'] with []
+04/10/2022 10:36:35 INFO  - Will not secure Or [Ant [pattern='/**']]
+04/10/2022 10:36:35 DEBUG - select admuser0_.id as id1_0_, admuser0_.ADDRESS as address2_0_, admuser0_.BIRTHDAY as birthday3_0_, admuser0_.CREATE_TIME as create_t4_0_, admuser0_.CREATOR_ID as creator_5_0_, admuser0_.CREATOR_NAME as creator_6_0_, admuser0_.EMAIL as email7_0_, admuser0_.FULL_NAME as full_nam8_0_, admuser0_.GENDER as gender9_0_, admuser0_.GIVEN_NAME as given_n10_0_, admuser0_.IS_DELETE as is_dele11_0_, admuser0_.PASSWORD as passwor12_0_, admuser0_.PHONE_NUMBER as phone_n13_0_, admuser0_.POSITION as positio14_0_, admuser0_.STATUS as status15_0_, admuser0_.SURNAME as surname16_0_, admuser0_.TYPE as type17_0_, admuser0_.UPDATE_TIME as update_18_0_, admuser0_.UPDATER_ID as updater19_0_, admuser0_.UPDATER_NAME as updater20_0_, admuser0_.USER_NAME as user_na21_0_ from ADM_USERS admuser0_ where admuser0_.USER_NAME=?
+04/10/2022 10:36:35 TRACE - binding parameter [1] as [VARCHAR] - [admin]
+04/10/2022 10:36:35 INFO  - Tomcat started on port(s): 8023 (http) with context path '/ig-clone'
+04/10/2022 10:36:36 INFO  - Starting Quartz Scheduler now
+04/10/2022 10:36:36 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+04/10/2022 10:36:36 INFO  - Started IgCloneApplication in 10.846 seconds (JVM running for 12.858)
+04/10/2022 10:36:36 INFO  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+04/10/2022 12:00:40 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+04/10/2022 12:00:41 INFO  - Shutting down Quartz Scheduler
+04/10/2022 12:00:41 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+04/10/2022 12:00:41 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+04/10/2022 12:00:41 INFO  - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+04/10/2022 12:00:41 INFO  - Closing JPA EntityManagerFactory for persistence unit 'db.primary.datasource'
