@@ -23,12 +23,14 @@ public class ChatRoom implements Serializable, Creatable, Updatable, Deletable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "CHAT_ID")
     private String chatId;
     @Column(name = "SENDER_ID")
     private String senderId;
+
+
     @Column(name = "RECIPIENT_ID")
     private String recipientId;
 
@@ -53,6 +55,7 @@ public class ChatRoom implements Serializable, Creatable, Updatable, Deletable {
     private String updatorName;
     @Column(name = "UPDATE_TIME")
     private Date updateTime;
+
     @Override
     public Long getCreatorId() {
         return this.creatorId;

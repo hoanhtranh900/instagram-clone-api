@@ -90,4 +90,10 @@ public class AdmUserResource extends BaseControllerImpl<AdmUser, AdmUserServiceI
         return new ResponseEntity<>(new ResponseData<>(admUserService.unlocks(ids), Result.SUCCESS), HttpStatus.OK);
     }
 
+    @ApiOperation(response = AdmUser.class, notes = Constants.NOTE_API + "empty_note", value = "Danh sách người dùng đã từng chat", authorizations = {@Authorization(value = Constants.API_KEY)})
+    @GetMapping(value = "/getListChatRecent")
+    public ResponseEntity<ResponseData> getListChatRecent() {
+        List<ViewAdmUser> pages = admUserService.getListChatRecent();
+        return new ResponseEntity<>(new ResponseData<>(pages, Result.SUCCESS), HttpStatus.OK);
+    }
 }

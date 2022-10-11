@@ -61,7 +61,7 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         Page<ViewAdmUser> page = null;
         try {
             List<ViewAdmUser> list = new ArrayList<>();
-            String hql = " from ViewAdmUser u left join u.unit unt where 1=1 ";
+            String hql = " from ViewAdmUser u where 1=1 ";
             QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
             builder.and(QueryUtils.EQ, "u.isDelete", ConstantString.IS_DELETE.active);
 
@@ -85,24 +85,16 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
             if (StringUtils.isNotBlank(searchObject.getFullName())) {
                 builder.and(QueryUtils.LIKE, "UPPER(u.fullName)", "%" + searchObject.getFullName().trim().toUpperCase() + "%");
             }
-
             if (StringUtils.isNotBlank(searchObject.getPosition())) {
                 builder.and(QueryUtils.LIKE, "UPPER(u.position)", "%" + searchObject.getPosition().trim().toUpperCase() + "%");
             }
 
-            if (H.isTrue(searchObject.getUnitId())) {
-                builder.and(QueryUtils.EQ, "UPPER(unt.id)", Long.parseLong(searchObject.getUnitId().trim()));
-            }
-
-
             Query query = builder.initQuery(false);
             int count = Integer.parseInt(query.getSingleResult().toString());
-
             pageable.getSort().iterator().forEachRemaining(order -> {
                 builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
             });
             builder.addOrder("u.createTime", QueryUtils.DESC);
-
             builder.setSubFix("select u");
             query = builder.initQuery(ViewAdmUser.class);
             if(pageable.getPageSize() > 0){
@@ -214,6 +206,10 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         return bo;
     }
 
+    @Override
+    public List<ViewAdmUser> getListChatRecent() {
+        return admUserRepository.loadListChatRecent(UtilsCommon.getUserLogin().get().getId());
+    }
 
 
 }

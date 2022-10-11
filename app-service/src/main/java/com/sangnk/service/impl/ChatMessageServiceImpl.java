@@ -20,7 +20,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
 
     @Autowired
     private ChatMessageRepository repository;
-    @Autowired private ChatRoomService chatRoomService;
+    @Autowired
+    private ChatRoomService chatRoomService;
 
     @Override
     public ChatMessage save(ChatMessage chatMessage) {
@@ -28,20 +29,20 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         repository.save(chatMessage);
         return chatMessage;
     }
+
     @Override
     public long countNewMessages(String senderId, String recipientId) {
 //        return repository.countBySenderIdAndRecipientIdAndStatus(
 //                senderId, recipientId, MessageStatus.RECEIVED);
         return 0;
     }
+
     @Override
     public List<ChatMessage> findChatMessages(String senderId, String recipientId) {
         Optional<String> chatId = chatRoomService.getChatId(senderId, recipientId, false);
-
-
-        if(chatId.isPresent()) {
+        if (chatId.isPresent()) {
             List<ChatMessage> messages = repository.findByChatId(chatId.get());
-            if(messages.size() > 0) {
+            if (messages.size() > 0) {
                 //update status to delivered
                 repository.saveAll(messages.stream().map(message -> {
                     message.setStatus(MessageStatus.DELIVERED);
@@ -53,6 +54,7 @@ public class ChatMessageServiceImpl implements ChatMessageService {
             return new ArrayList<>();
         }
     }
+
     @Override
     public ChatMessage findById(Long id) throws ResourceNotFoundException {
 //        return repository
@@ -68,6 +70,7 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         chatMessage.setStatus(MessageStatus.DELIVERED);
         return repository.save(chatMessage);
     }
+
     @Override
     public void updateStatuses(String chatId, MessageStatus status) {
 

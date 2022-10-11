@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserInfo {
 
+    private Long userId;
     private String username;
     private String mobileAlias;
     private String email;

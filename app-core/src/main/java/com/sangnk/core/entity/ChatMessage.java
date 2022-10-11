@@ -6,6 +6,7 @@ import com.sangnk.core.entity._enum.MessageStatus;
 import com.sangnk.core.entity.base.Creatable;
 import com.sangnk.core.entity.base.Deletable;
 import com.sangnk.core.entity.base.Updatable;
+import com.sangnk.core.utils.DateUtils;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,6 +36,13 @@ public class ChatMessage implements Serializable, Creatable, Updatable, Deletabl
     private String content;
     private Date timestamp;
     private MessageStatus status;
+
+    @Transient
+    private String sendDate;
+
+    public String getSendDate() {
+        return DateUtils.convertDateToString(timestamp);
+    }
 
 
 

@@ -86,6 +86,9 @@ public class ViewAdmUser  implements Serializable, Creatable, Updatable, Deletab
     @Transient
     private String avatar;
 
+    @Transient
+    private String lastMessage;
+
     public String getAvatar() {
         return CategoryBuffer.getUserAvataById(id);
     }

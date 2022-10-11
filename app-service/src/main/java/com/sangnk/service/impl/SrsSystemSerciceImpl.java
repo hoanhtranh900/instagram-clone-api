@@ -76,6 +76,7 @@ public class SrsSystemSerciceImpl implements SrsSystemSercice {
             accessToken.setTokenType("Bearer");
             accessToken.setExpiresIn(tokenHelper.getClaimsFromToken(jwt).getExpiration().getTime());
             userInfo.setUsername(user.getUsername());
+            userInfo.setUserId(user.getId());
             userInfo.setMobileAlias(user.getPhoneNumber());
             userInfo.setEmail(user.getEmail());
             userInfo.setAccessTokenInfo(accessToken);
