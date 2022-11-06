@@ -134,6 +134,11 @@ public class FileIOServiceImpl implements FileIOService {
 
     @Override
     public Boolean updateFileForObject(UploadFileDTO uploadFileDTO) throws BadRequestException {
+        //delete all file by object id and object type
+        List<FileAttachment> lstFileAttachment = attachmentRepository.findByObjectIdAndIsdelete(uploadFileDTO.getObjectId(), ConstantString.IS_DELETE.active);
+        for (FileAttachment fileAttachment : lstFileAttachment) {
+            attachmentRepository.delete(fileAttachment);
+        }
         if(H.isTrue(uploadFileDTO.getListFileIds())){
             for ( Long attachId : uploadFileDTO.getListFileIds()) {
                 Optional<FileAttachment> vbAttachmentOpt = attachmentRepository.findByIdAndIsDelete(attachId, ConstantString.IS_DELETE.active);

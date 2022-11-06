@@ -88,4 +88,12 @@ public ResponseEntity<ResponseData> checkLike(@PathVariable("postid") Long postI
     public ResponseEntity<ResponseData> getLike(@PathVariable("id") Long postId) {
         return new ResponseEntity<>(new ResponseData<>(postService.getLikeByPostId(postId), Result.SUCCESS), HttpStatus.OK);
     }
+
+    //get my post
+    @GetMapping(value = "/getMyPost")
+    public ResponseEntity<ResponseData> getMyPost(Pageable pageable, @ApiParam(value = Constants.NOTE_API_PAGEABLE) @RequestParam @Valid String search) {
+        SearchForm searchObject = JsonHelper.jsonToObject(search, SearchForm.class);
+        Page<ViewPost> pages = postService.getMyPost(searchObject, pageable);
+        return new ResponseEntity<>(new ResponseData<>(pages, Result.SUCCESS), HttpStatus.OK);
+    }
 }

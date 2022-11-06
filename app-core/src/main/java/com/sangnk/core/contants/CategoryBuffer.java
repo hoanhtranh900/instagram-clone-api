@@ -31,7 +31,7 @@ public class CategoryBuffer {
         if (avata == null) {
             List<FileAttachment> fileAttachment = fileAttachmentRepository.findByObjectIdAndObjectTypeAndIsDelete(id, ConstantString.OBJECT_TYPE.AVATAR, null, ConstantString.IS_DELETE.active);
             if (H.isTrue(fileAttachment)) {
-                avata = ConstantString.imageUrlTest + fileAttachment.get(0).getFileServiceId();
+                avata = ConstantString.imageUrlTest + fileAttachment.get(0).getId();
             }
         }
         return avata;

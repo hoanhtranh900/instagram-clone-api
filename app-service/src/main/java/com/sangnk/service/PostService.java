@@ -36,4 +36,6 @@ public interface PostService {
      List<Like> getLikeByPostId(Long postId);
 
      Like checkLike(Long postId);
+
+     Page<ViewPost> getMyPost(SearchForm searchObject, Pageable pageable);
 }

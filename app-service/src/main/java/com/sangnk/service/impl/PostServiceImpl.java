@@ -110,7 +110,7 @@ public class PostServiceImpl implements PostService {
                 System.out.println(ConstantString.imageUrlTest);
                 FileAttachment fileAttachment = H.isTrue(fileIOService.findByObjectIdAndObjectType(viewPost.getId(), ConstantString.OBJECT_TYPE.POST, null)) ? fileIOService.findByObjectIdAndObjectType(viewPost.getId(), ConstantString.OBJECT_TYPE.POST, null).get(0) : null;
                 if (H.isTrue(fileAttachment)) {
-                    viewPost.setPostImageUrl(ConstantString.imageUrlTest + fileAttachment.getFileServiceId());
+                    viewPost.setPostImageUrl(ConstantString.imageUrlTest + fileAttachment.getId());
                 }
             }
             if (list != null) {
@@ -187,5 +187,64 @@ public class PostServiceImpl implements PostService {
     @Override
     public Like checkLike(Long postId) {
         return likeRepository.findByPostIdAndUserId(postId, UtilsCommon.getUserLogin().get().getId(), ConstantString.IS_DELETE.active).orElse(null);
+    }
+
+    @Override
+    public Page<ViewPost> getMyPost(SearchForm searchObject, Pageable pageable) {
+        List<Follow> getListFollowByUser = followRepository.findAllByFollowerId(UtilsCommon.getUserLogin().get().getId());
+        //userIdFollowing = follow.getFollowing().getId();
+        List<Long> userIdFollowings = getListFollowByUser.stream().map(Follow::getFollowing).map(AdmUser::getId).collect(Collectors.toList());
+
+        userIdFollowings.add(UtilsCommon.getUserLogin().get().getId());
+        Page<ViewPost> page = null;
+        try {
+            List<ViewPost> list = new ArrayList<>();
+            String hql = " from ViewPost u  where 1=1 ";
+            QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
+
+
+            if (StringUtils.isNotBlank(searchObject.getFullName())) {
+                builder.and(QueryUtils.LIKE, "UPPER(u.fullName)", "%" + searchObject.getFullName().trim().toUpperCase() + "%");
+            }
+            if(H.isTrue(searchObject.getId())){
+                builder.and(QueryUtils.EQ, "u.creatorId", searchObject.getId() );
+            }
+
+            if (H.isTrue(getListFollowByUser)) {
+                builder.and(QueryUtils.IN, "u.creatorId", userIdFollowings);
+            }
+
+
+            Query query = builder.initQuery(false);
+            int count = Integer.parseInt(query.getSingleResult().toString());
+
+            pageable.getSort().iterator().forEachRemaining(order -> {
+                builder.addOrder("u." + order.getProperty(), order.getDirection().isAscending() ? "ASC" : "DESC");
+            });
+//            builder.addOrder("u.createTime", QueryUtils.DESC);
+
+            builder.setSubFix("select u");
+            query = builder.initQuery(ViewPost.class);
+            if (pageable.getPageSize() > 0) {
+                query.setFirstResult(Integer.parseInt(String.valueOf(pageable.getOffset()))).setMaxResults(pageable.getPageSize());
+            }
+            list = query.getResultList();
+
+
+            for (ViewPost viewPost : list) {
+                System.out.println(ConstantString.imageUrlTest);
+                FileAttachment fileAttachment = H.isTrue(fileIOService.findByObjectIdAndObjectType(viewPost.getId(), ConstantString.OBJECT_TYPE.POST, null)) ? fileIOService.findByObjectIdAndObjectType(viewPost.getId(), ConstantString.OBJECT_TYPE.POST, null).get(0) : null;
+                if (H.isTrue(fileAttachment)) {
+                    viewPost.setPostImageUrl(ConstantString.imageUrlTest + fileAttachment.getId());
+                }
+            }
+            if (list != null) {
+                page = new PageImpl<>(list, pageable, count);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return page;
     }
 }

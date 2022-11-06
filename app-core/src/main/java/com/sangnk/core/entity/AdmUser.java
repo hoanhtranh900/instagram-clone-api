@@ -2,6 +2,7 @@
 package com.sangnk.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sangnk.core.contants.CategoryBuffer;
 import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.entity.base.Creatable;
 import com.sangnk.core.entity.base.Deletable;
@@ -128,7 +129,12 @@ public class AdmUser implements Serializable, UserDetails, Creatable, Updatable,
     private List<Long> groupIds;
 
 
+    @Transient
+    private String avatar;
 
+    public String getAvatar() {
+        return CategoryBuffer.getUserAvataById(id);
+    }
 
 
     //update
@@ -138,6 +144,7 @@ public class AdmUser implements Serializable, UserDetails, Creatable, Updatable,
         bo.setSurname(form.getSurname());
         bo.setGivenName(form.getGivenName());
         bo.setFullName(form.getFullName());
+        bo.setUsername(form.getUsername());
         bo.setStatus(form.getStatus());
         bo.setEmail(form.getEmail());
         bo.setBirthday(form.getBirthday());

@@ -25,4 +25,6 @@ public interface FileAttachmentRepository extends JpaSpecificationExecutor<FileA
     @Query("select a from FileAttachment a where a.isDelete =:isDelete and a.id in (:ids) and (:objectType is null or a.objectType = :objectType) ")
     List<FileAttachment> findByIdInAndObjectType(List<Long> ids, Long isDelete, Long objectType);
 
+    @Query("select a from FileAttachment a where a.isDelete = :isDelete and a.objectId = :objectId")
+    List<FileAttachment> findByObjectIdAndIsdelete(Long objectId, Long isDelete);
 }

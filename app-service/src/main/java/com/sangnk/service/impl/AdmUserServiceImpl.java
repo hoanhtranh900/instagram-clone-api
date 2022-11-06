@@ -211,5 +211,10 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
         return admUserRepository.loadListChatRecent(UtilsCommon.getUserLogin().get().getId());
     }
 
+    @Override
+    public AdmUser getProfile() {
+        return admUserRepository.findByUsername(UtilsCommon.getUserLogin().get().getUsername()).orElseThrow(() -> new BaseException(messageSource.getMessage("error.ENTITY_NOT_FOUND", new Object[]{"User"}, UtilsCommon.getLocale())));
+    }
+
 
 }

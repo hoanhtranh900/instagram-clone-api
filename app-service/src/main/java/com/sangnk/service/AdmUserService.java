@@ -35,4 +35,6 @@ public interface AdmUserService<E> {
     AdmUser edit(AdmUser form) throws BadRequestException;
 
     List<ViewAdmUser> getListChatRecent();
+
+    AdmUser getProfile();
 }
