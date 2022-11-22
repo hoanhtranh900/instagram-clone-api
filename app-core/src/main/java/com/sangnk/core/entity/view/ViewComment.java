@@ -7,6 +7,7 @@ import com.sangnk.core.entity.Post;
 import com.sangnk.core.entity.base.Creatable;
 import com.sangnk.core.entity.base.Deletable;
 import com.sangnk.core.entity.base.Updatable;
+import com.sangnk.core.utils.UtilsDate;
 import lombok.*;
 import org.hibernate.annotations.Subselect;
 
@@ -59,6 +60,16 @@ public class ViewComment  implements Serializable, Creatable, Updatable, Deletab
     private String updatorName;
     @Column(name = "UPDATE_TIME")
     private Date updateTime;
+
+    @Transient
+    private String createTimeStr;
+
+    public String getCreateTimeStr() {
+        return UtilsDate.date3str(this.createTime);
+    }
+
+
+
     @Override
     public Long getCreatorId() {
         return this.creatorId;

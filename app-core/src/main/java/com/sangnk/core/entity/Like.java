@@ -40,6 +40,9 @@ public class Like implements Serializable, Creatable, Updatable, Deletable {
     @JoinColumn(name = "user_id", nullable = false)
     private AdmUser user;
 
+    @Transient
+    private Long totalLike;
+
     @org.hibernate.annotations.Comment("Trạng thái xóa")
     @Column(name = "IS_DELETE", columnDefinition = "bigint default 0")
     private Long isDelete = ConstantString.IS_DELETE.active;

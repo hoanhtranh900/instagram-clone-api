@@ -54,9 +54,16 @@ public class FollowResource extends BaseControllerImpl<Follow, FollowServiceImpl
         return new ResponseEntity<>(new ResponseData<>(pages, Result.SUCCESS), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/followUser")
-    public ResponseEntity<ResponseData> followUser(@RequestParam("id") Long id) {
-        Follow follow = followService.followUser(id);
+    @PostMapping(value = "/followUser/{id}")
+    public ResponseEntity<ResponseData> followUser(@PathVariable("id") Long id) {
+        Boolean follow = followService.followUser(id);
         return new ResponseEntity<>(new ResponseData<>(follow, Result.SUCCESS), HttpStatus.OK);
+    }
+
+    //check follow
+    @GetMapping(value = "/checkFollow/{userId}")
+    public ResponseEntity<ResponseData> checkFollow(@PathVariable("userId") Long userId) {
+        Boolean isFollow = followService.checkFollow(userId);
+        return new ResponseEntity<>(new ResponseData<>(isFollow, Result.SUCCESS), HttpStatus.OK);
     }
 }

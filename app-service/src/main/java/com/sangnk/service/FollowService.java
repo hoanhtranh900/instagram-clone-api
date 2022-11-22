@@ -16,8 +16,8 @@ public interface FollowService<E> {
     Optional<E> save(E entity);
     Optional<E> update(E entity);
     Optional<E> get(Long id);
-    Follow followUser(Long userIdAdmUser);
-    Follow isFollowing(Long userIdAdmUser);
+    Boolean followUser(Long userIdAdmUser);
+    Boolean isFollowing(Long userIdAdmUser);
 
     //Lấy danh sách người theo dõi mình
     Page<ViewFollow> getUserFollowers(SearchForm searchForm, Pageable pageable);
@@ -26,4 +26,6 @@ public interface FollowService<E> {
     Page<ViewFollow> getUserFollowing(SearchForm searchForm, Pageable pageable);
     Follow acceptFollow(Long followRequestId);
     Follow declineFollow(Long followRequestId);
+
+    Boolean checkFollow(Long userId);
 }

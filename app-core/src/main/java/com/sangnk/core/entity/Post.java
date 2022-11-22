@@ -1,10 +1,13 @@
 package com.sangnk.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sangnk.core.contants.ConstantAuthor;
 import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.entity.base.Creatable;
 import com.sangnk.core.entity.base.Deletable;
 import com.sangnk.core.entity.base.Updatable;
+import com.sangnk.core.entity.view.ViewAdmUser;
+import com.sangnk.core.utils.UtilsDate;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,6 +35,10 @@ public class Post implements Serializable, Creatable, Updatable, Deletable {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CREATOR_ID", insertable = false, updatable = false)
+    private AdmUser creator;
+
     //total Like
     @Column(name = "TOTAL_LIKE", columnDefinition = "bigint default 0")
     private Long totalLike = 0L;
@@ -54,6 +61,12 @@ public class Post implements Serializable, Creatable, Updatable, Deletable {
     private String updatorName;
     @Column(name = "UPDATE_TIME")
     private Date updateTime;
+
+    @Transient
+    private String postImageUrl;
+
+    @Transient
+    private String creteTimeStr;
 
     public Post formToBo(Post form, Post bo) {
         bo.setDescription(form.getDescription());
@@ -129,4 +142,9 @@ public class Post implements Serializable, Creatable, Updatable, Deletable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    public String getCreteTimeStr() {
+        return UtilsDate.date3str(this.createTime);
+    }
+
 }

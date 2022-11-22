@@ -1,13 +1,9 @@
 package com.sangnk.service.impl;
 
-import com.sangnk.core.contants.Constants;
-import com.sangnk.core.dto.request.LoginRequest;
-import com.sangnk.core.dto.response.UserInfo;
 import com.sangnk.core.entity.*;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.BaseException;
-import com.sangnk.core.exception.UnauthorizedException;
 import com.sangnk.core.service.BaseServiceImpl;
 import com.sangnk.core.utils.*;
 import com.sangnk.service.*;
@@ -17,21 +13,17 @@ import com.sangnk.core.repository.AdmUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * TODO: write you class description here
@@ -212,8 +204,8 @@ public class AdmUserServiceImpl extends BaseServiceImpl<AdmUser, AdmUserReposito
     }
 
     @Override
-    public AdmUser getProfile() {
-        return admUserRepository.findByUsername(UtilsCommon.getUserLogin().get().getUsername()).orElseThrow(() -> new BaseException(messageSource.getMessage("error.ENTITY_NOT_FOUND", new Object[]{"User"}, UtilsCommon.getLocale())));
+    public AdmUser getProfile(Long id) {
+        return admUserRepository.getById(id);
     }
 
 

@@ -33,6 +33,9 @@ public class CategoryBuffer {
             if (H.isTrue(fileAttachment)) {
                 avata = ConstantString.imageUrlTest + fileAttachment.get(0).getId();
             }
+            else {
+                avata = "https://www.w3schools.com/howto/img_avatar.png";
+            }
         }
         return avata;
     }

@@ -69,7 +69,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<ViewPost> getAllPost(SearchForm searchObject, Pageable pageable) {
-        List<Follow> getListFollowByUser = followRepository.findAllByFollowerId(UtilsCommon.getUserLogin().get().getId());
+        List<Follow> getListFollowByUser = followRepository.findAllByFollowerId(H.isTrue(searchObject.getId()) ? Long.parseLong(searchObject.getId()) : UtilsCommon.getUserLogin().get().getId());
         //userIdFollowing = follow.getFollowing().getId();
         List<Long> userIdFollowings = getListFollowByUser.stream().map(Follow::getFollowing).map(AdmUser::getId).collect(Collectors.toList());
 
@@ -79,15 +79,16 @@ public class PostServiceImpl implements PostService {
             List<ViewPost> list = new ArrayList<>();
             String hql = " from ViewPost u  where 1=1 ";
             QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
+            if (H.isTrue(searchObject.getId())) {
+                builder.and(QueryUtils.EQ, "u.creatorId", Long.parseLong(searchObject.getId()));
 
+            }
 
             if (StringUtils.isNotBlank(searchObject.getFullName())) {
                 builder.and(QueryUtils.LIKE, "UPPER(u.fullName)", "%" + searchObject.getFullName().trim().toUpperCase() + "%");
             }
 
-            if (H.isTrue(getListFollowByUser)) {
-                builder.and(QueryUtils.IN, "u.creatorId", userIdFollowings);
-            }
+            if(!H.isTrue(searchObject.getId()) ) builder.and(QueryUtils.IN, "u.creatorId", userIdFollowings);
 
 
             Query query = builder.initQuery(false);
@@ -175,6 +176,7 @@ public class PostServiceImpl implements PostService {
             }
             like.setIsDelete(ConstantString.IS_DELETE.delete);
         }
+        like.setTotalLike(post.getTotalLike());
         utilsService.update(postRepository, post);
         return like;
     }
@@ -206,8 +208,8 @@ public class PostServiceImpl implements PostService {
             if (StringUtils.isNotBlank(searchObject.getFullName())) {
                 builder.and(QueryUtils.LIKE, "UPPER(u.fullName)", "%" + searchObject.getFullName().trim().toUpperCase() + "%");
             }
-            if(H.isTrue(searchObject.getId())){
-                builder.and(QueryUtils.EQ, "u.creatorId", searchObject.getId() );
+            if (H.isTrue(searchObject.getId())) {
+                builder.and(QueryUtils.EQ, "u.creatorId", searchObject.getId());
             }
 
             if (H.isTrue(getListFollowByUser)) {
@@ -246,5 +248,16 @@ public class PostServiceImpl implements PostService {
             e.printStackTrace();
         }
         return page;
+    }
+
+    @Override
+    public Post detail(Long id) {
+        Post post = getPostById(id);
+
+        FileAttachment fileAttachment = H.isTrue(fileIOService.findByObjectIdAndObjectType(post.getId(), ConstantString.OBJECT_TYPE.POST, null)) ? fileIOService.findByObjectIdAndObjectType(post.getId(), ConstantString.OBJECT_TYPE.POST, null).get(0) : null;
+        if (H.isTrue(fileAttachment)) {
+            post.setPostImageUrl(ConstantString.imageUrlTest + fileAttachment.getId());
+        }
+        return post;
     }
 }

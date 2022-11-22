@@ -49,15 +49,24 @@ public class FollowServiceImpl extends BaseServiceImpl<Follow, FollowRepository>
     }
 
     @Override
-    public Follow followUser(Long userId) {
+    public Boolean followUser(Long userId) {
+
         AdmUser cuUser = UtilsCommon.getUserLogin().get();
+
+        if(isFollowing(userId)){
+            Follow follow = followRepository.findByFollowerAndFollowing(cuUser.getId(), userId).get();
+            followRepository.delete(follow);
+            return false;
+        }
+
+
         validateFollow(userId, cuUser);
         Follow follow = new Follow();
         follow.setFollower(cuUser);
         AdmUser user = admUserService.get(userId).orElseThrow(() -> new BaseException("User not found"));
         follow.setFollowing(user);
         utilsService.save(followRepository, follow);
-        return follow;
+        return true;
     }
 
     private void validateFollow(Long following, AdmUser cuUser) {
@@ -67,8 +76,9 @@ public class FollowServiceImpl extends BaseServiceImpl<Follow, FollowRepository>
     }
 
     @Override
-    public Follow isFollowing(Long userIdAdmUser) {
-        return null;
+    public Boolean isFollowing(Long userIdAdmUser) {
+        AdmUser cuUser = UtilsCommon.getUserLogin().get();
+        return followRepository.findByFollowerAndFollowing(cuUser.getId(), userIdAdmUser).isPresent();
     }
 
     @Override
@@ -160,6 +170,15 @@ public class FollowServiceImpl extends BaseServiceImpl<Follow, FollowRepository>
         return null;
     }
 
+    @Override
+    public Boolean checkFollow(Long userId) {
+        AdmUser cuUser = UtilsCommon.getUserLogin().get();
+        Optional<Follow> follow = followRepository.findByFollowerAndFollowing(cuUser.getId(), admUserService.get(userId).get().getId());
+        if (follow.isPresent()) {
+            return true;
+        }
+        return false;
+    }
 
 
 }

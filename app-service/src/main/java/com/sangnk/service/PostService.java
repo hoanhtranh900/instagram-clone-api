@@ -38,4 +38,6 @@ public interface PostService {
      Like checkLike(Long postId);
 
      Page<ViewPost> getMyPost(SearchForm searchObject, Pageable pageable);
+
+     Post detail(Long id);
 }

@@ -56,9 +56,9 @@ public class AdmUserResource extends BaseControllerImpl<AdmUser, AdmUserServiceI
 
     //get profile
     @ApiOperation(response = AdmUser.class, notes = Constants.NOTE_API + "empty_note", value = "Thông tin người dùng", authorizations = {@Authorization(value = Constants.API_KEY)})
-    @GetMapping(value = "/getProfile")
-    public ResponseEntity<ResponseData> getProfile() {
-        AdmUser admUser = admUserService.getProfile();
+    @GetMapping(value = "/getProfile/{id}")
+    public ResponseEntity<ResponseData> getProfile(@PathVariable Long id) {
+        AdmUser admUser = admUserService.getProfile(id);
         return new ResponseEntity<>(new ResponseData<>(admUser, Result.SUCCESS), HttpStatus.OK);
     }
 

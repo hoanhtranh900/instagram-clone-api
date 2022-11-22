@@ -1,11 +1,9 @@
 package com.sangnk.service;
 
 import com.sangnk.core.dto.request.SearchForm;
-import com.sangnk.core.dto.response.UserInfo;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.exception.BadRequestException;
-import com.sangnk.core.exception.UnauthorizedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -36,5 +34,5 @@ public interface AdmUserService<E> {
 
     List<ViewAdmUser> getListChatRecent();
 
-    AdmUser getProfile();
+    AdmUser getProfile(Long id);
 }

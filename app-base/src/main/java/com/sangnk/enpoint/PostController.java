@@ -40,6 +40,13 @@ public class PostController {
         return new ResponseEntity<>(new ResponseData<>(pages, Result.SUCCESS), HttpStatus.OK);
     }
 
+    //detail post
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ResponseData> getPost(@PathVariable Long id) {
+        Post post = postService.detail(id);
+        return new ResponseEntity<>(new ResponseData<>(post, Result.SUCCESS), HttpStatus.OK);
+    }
+
     //add post
     @PostMapping(value = "/create")
     public ResponseEntity<ResponseData> create(@RequestBody @Valid Post post) {
@@ -64,9 +71,8 @@ public class PostController {
 
     //getComment of Post
     @GetMapping(value = "/getComment/{id}")
-    public ResponseEntity<ResponseData> getComment(Pageable pageable, @ApiParam(value = Constants.NOTE_API_PAGEABLE) @RequestParam @Valid String search) {
-        SearchForm searchObject = JsonHelper.jsonToObject(search, SearchForm.class);
-        return new ResponseEntity<>(new ResponseData<>(commentService.getCommentsByPostId(searchObject, pageable), Result.SUCCESS), HttpStatus.OK);
+    public ResponseEntity<ResponseData> getComment(Pageable pageable, @PathVariable("id") Long postId) {
+        return new ResponseEntity<>(new ResponseData<>(commentService.getCommentsByPostId(postId, pageable), Result.SUCCESS), HttpStatus.OK);
     }
 
 

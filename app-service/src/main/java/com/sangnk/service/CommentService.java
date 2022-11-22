@@ -47,6 +47,7 @@ public class CommentService {
     private UtilsService utilsService;
 
     public Comment commentPost(Long postId, String commentBody) {
+        commentBody = commentBody.substring(1, commentBody.length() - 1);
         Post post = postService.getPostById(postId);
 //        if (!validateComment(post)) throw new BaseException("Comment is not allowed");
 
@@ -65,7 +66,7 @@ public class CommentService {
 
 
 
-    public Page<ViewComment> getCommentsByPostId(SearchForm searchForm, Pageable pageable) {
+    public Page<ViewComment> getCommentsByPostId(Long id, Pageable pageable) {
         Page<ViewComment> page = null;
         try {
             List<ViewComment> list = new ArrayList<>();
@@ -73,7 +74,7 @@ public class CommentService {
             QueryBuilder builder = new QueryBuilder(entityManager, "select count(u)", new StringBuffer(hql), false);
 
 
-            builder.and(QueryUtils.EQ, "pt.id", Long.parseLong(searchForm.getId()));
+            builder.and(QueryUtils.EQ, "pt.id", id);
 
 
             Query query = builder.initQuery(false);
