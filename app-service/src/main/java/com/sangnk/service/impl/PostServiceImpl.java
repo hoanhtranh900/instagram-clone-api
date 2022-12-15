@@ -66,6 +66,9 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private FollowService followService;
 
+    @Autowired
+    private NotificationService notificationService;
+
 
     @Override
     public Page<ViewPost> getAllPost(SearchForm searchObject, Pageable pageable) {
@@ -166,6 +169,8 @@ public class PostServiceImpl implements PostService {
 //            utilsService.save(likeRepository, like);
             likeRepository.save(like);
             post.setTotalLike(post.getTotalLike() + 1);
+            String content = "Ông/bà " + UtilsCommon.getUserLogin().get().getFullName() + " đã thích bài viết của bạn";
+            notificationService.save(Notification.builder().content(content).fromUserId(UtilsCommon.getUserLogin().get().getId()).toUserId(post.getCreatorId()).createTime(new Date()).build());
 
         } else {
             likeRepository.delete(like);

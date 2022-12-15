@@ -5,6 +5,7 @@ import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.dto.request.SearchForm;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.entity.Follow;
+import com.sangnk.core.entity.Notification;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.entity.view.ViewFollow;
 import com.sangnk.core.entity.view.ViewPost;
@@ -16,6 +17,7 @@ import com.sangnk.core.service.BaseServiceImpl;
 import com.sangnk.core.utils.*;
 import com.sangnk.service.AdmUserService;
 import com.sangnk.service.FollowService;
+import com.sangnk.service.NotificationService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +40,8 @@ public class FollowServiceImpl extends BaseServiceImpl<Follow, FollowRepository>
     private FollowRequestRepository followRequestRepository;
     @Autowired
     private AdmUserService<AdmUser> admUserService;
+    @Autowired
+    private NotificationService<Notification> notificationService;
 
     @Autowired
     private UtilsService utilsService;
@@ -66,6 +71,8 @@ public class FollowServiceImpl extends BaseServiceImpl<Follow, FollowRepository>
         AdmUser user = admUserService.get(userId).orElseThrow(() -> new BaseException("User not found"));
         follow.setFollowing(user);
         utilsService.save(followRepository, follow);
+        String content = "Ông/bà " + cuUser.getFullName() + " đã bắt đầu theo dõi bạn";
+        notificationService.save(Notification.builder().content(content).fromUserId(cuUser.getId()).toUserId(follow.getFollowing().getId()).createTime(new Date()).build());
         return true;
     }
 

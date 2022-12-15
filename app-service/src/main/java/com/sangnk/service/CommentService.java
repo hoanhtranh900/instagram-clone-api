@@ -3,10 +3,7 @@ package com.sangnk.service;
 
 import com.sangnk.core.contants.ConstantString;
 import com.sangnk.core.dto.request.SearchForm;
-import com.sangnk.core.entity.AdmUser;
-import com.sangnk.core.entity.Comment;
-import com.sangnk.core.entity.Follow;
-import com.sangnk.core.entity.Post;
+import com.sangnk.core.entity.*;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.entity.view.ViewComment;
 import com.sangnk.core.entity.view.ViewFollow;
@@ -46,6 +43,9 @@ public class CommentService {
     @Autowired
     private UtilsService utilsService;
 
+    @Autowired
+    private NotificationService notificationService;
+
     public Comment commentPost(Long postId, String commentBody) {
         commentBody = commentBody.substring(1, commentBody.length() - 1);
         Post post = postService.getPostById(postId);
@@ -61,6 +61,9 @@ public class CommentService {
 
 
         utilsService.save(commentRepository, comment);
+
+        String content = "Ông/bà " + user.get().getFullName() + " đã bình luận bài viết của bạn";
+        notificationService.save(Notification.builder().content(content).fromUserId(user.get().getId()).toUserId(post.getCreatorId()).createTime(new Date()).build());
         return comment;
     }
 

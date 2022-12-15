@@ -5,6 +5,7 @@ import com.sangnk.core.contants.Constants;
 import com.sangnk.core.controller.BaseControllerImpl;
 import com.sangnk.core.dto.response.ResponseData;
 import com.sangnk.core.dto.request.SearchForm;
+import com.sangnk.core.entity.Notification;
 import com.sangnk.core.entity.view.ViewAdmUser;
 import com.sangnk.core.exception.BadRequestException;
 import com.sangnk.core.exception.BaseException;
@@ -14,6 +15,7 @@ import com.sangnk.core.utils.JsonHelper;
 import com.sangnk.core.entity.AdmUser;
 import com.sangnk.core.utils.UtilsCommon;
 import com.sangnk.service.AdmUserService;
+import com.sangnk.service.NotificationService;
 import com.sangnk.service.impl.AdmUserServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -45,6 +47,8 @@ public class AdmUserResource extends BaseControllerImpl<AdmUser, AdmUserServiceI
 
     @Autowired private AdmUserService<AdmUser> admUserService;
     @Autowired private MessageSource messageSource;
+
+    @Autowired private NotificationService<Notification> notificationService;
 
     @ApiOperation(response = AdmUser.class, notes = Constants.NOTE_API + "empty_note", value = "Danh sách người dùng", authorizations = {@Authorization(value = Constants.API_KEY)})
     @GetMapping(value = "/getPage")
@@ -104,4 +108,12 @@ public class AdmUserResource extends BaseControllerImpl<AdmUser, AdmUserServiceI
         List<ViewAdmUser> pages = admUserService.getListChatRecent();
         return new ResponseEntity<>(new ResponseData<>(pages, Result.SUCCESS), HttpStatus.OK);
     }
+
+    @ApiOperation(response = Notification.class, notes = Constants.NOTE_API + "empty_note", value = "get notification", authorizations = {@Authorization(value = Constants.API_KEY)})
+    @GetMapping(value = "/getNotify")
+    public ResponseEntity getNotify(Pageable pageable, @ApiParam(value = Constants.NOTE_API_PAGEABLE) @RequestParam(value = "search") String search) {
+        SearchForm searchObject = JsonHelper.jsonToObject(search == null || search.isEmpty() ? "{}" : search, SearchForm.class);
+        return new ResponseEntity(new ResponseData(notificationService.getPage(searchObject, pageable), Result.SUCCESS), HttpStatus.OK);
+    }
+
 }
